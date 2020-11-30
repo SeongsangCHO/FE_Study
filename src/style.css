@@ -1,30 +1,47 @@
 /* font */
-
+/* https://github.com/O-Kreator/Nyong-timer/blob/main/src/style.css  */
 @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
 
 .jejumyeongjo * {
   font-family: "Jeju Myeongjo", serif;
 }
+* {
+  font-family: "jejumyeongjo", "serif";
+}
 
 /* Variables */
 
 :root {
-  --white-theme-background: rgb(255, 255, 255);
-  --dark-theme-background: rgb(0, 0, 0);
+  --white-theme-background: #ffffff;
+  --dark-theme-background: #121212;
+  --time-short: 0.1s;
+  --time-long: 0.2s;
 }
 
 /* init */
 html,
 body {
   margin: 0;
-  padding: 10px;
   box-sizing: border-box;
-  font-family: "jejumyeongjo", monospace;
+  transition-duration: var(--time-long);
+  width: 100%;
+  height: 100%;
+  background-color: var(--white-theme-background);
+}
+
+body {
+  padding: 15px;
+}
+button {
+  border: none;
+  outline: none;
 }
 
 #theme-toggle-button {
+  border-radius: 15px;
+  /* background-color:aqua; */
+  background-color: ;
 }
-
 
 /* theme */
 
@@ -33,8 +50,7 @@ body {
 }
 
 /* Changing theme accoding to os config */
-/* 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   body {
     background-color: var(--dark-theme-background);
   }
@@ -45,4 +61,3 @@ body {
     background-color: var(--dark-theme-background);
   }
 } */
-
