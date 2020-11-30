@@ -1,0 +1,48 @@
+/* font */
+
+@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+
+.jejumyeongjo * {
+  font-family: "Jeju Myeongjo", serif;
+}
+
+/* Variables */
+
+:root {
+  --white-theme-background: rgb(255, 255, 255);
+  --dark-theme-background: rgb(0, 0, 0);
+}
+
+/* init */
+html,
+body {
+  margin: 0;
+  padding: 10px;
+  box-sizing: border-box;
+  font-family: "jejumyeongjo", monospace;
+}
+
+#theme-toggle-button {
+}
+
+
+/* theme */
+
+.dark {
+  background-color: var(--dark-theme-background);
+}
+
+/* Changing theme accoding to os config */
+/* 
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--dark-theme-background);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: var(--dark-theme-background);
+  }
+} */
+
