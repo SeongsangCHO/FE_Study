@@ -1,0 +1,52 @@
+/* node-sass foo.scss > bar.css */
+
+/*
+## whole file complie in folder
+## node-sass input-folder-path -o output-folder-path
+$ node-sass src/sass --output dist/css */
+
+$gray: #333;
+$white: #fff;
+$fs30: 30px;
+
+.btn1 {
+  display: block;
+  width: 200px;
+  height: 50px;
+  line-height: 50px;
+  font-size: $fs30;
+  color: $gray;
+
+  &:hover {
+    background-color: $white;
+    color: $white;
+  }
+}
+
+.btn2 {
+  display: block;
+  width: 200px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 20px;
+  color: $white;
+}
+
+.ulTag {
+  color: red;
+  ul {
+    border: 1px solid gray;
+    > li {
+      background-color: pink;
+      a {
+        text-decoration: none;
+        &:hover {
+          color: aqua;
+        }
+      }
+      &:last-child{
+        border:1px dotted red;
+      }
+    }
+  }
+}

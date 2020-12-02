@@ -58,6 +58,6 @@ button {
 
 @media (prefers-color-scheme: light) {
   body {
-    background-color: var(--dark-theme-background);
+    background-color: var(--light-theme-background);
   }
 } */
