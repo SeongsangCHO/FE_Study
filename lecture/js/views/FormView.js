@@ -18,6 +18,9 @@ FormView.setup = function (el)  {
   // reset el 숨김처리
   this.showResetBtn(false);
   this.bindEvents();
+
+  //MainController에서 체이닝으로 다른 메소드 호출하기 위해서 return this
+  return this;
 }
 
 //defalut는 true, 인자를 받으면 그에 맞게 들어감
@@ -27,13 +30,21 @@ FormView.showResetBtn = function(show = true){
 }
 
 FormView.bindEvents = function() {
-  
-  this.inputEl.addEventListener('keyup', e => this.onKeyUp(e))
+  this.on('submit', e => e.preventDefault());
+  this.inputEl.addEventListener('keyup', e => this.onKeyUp(e));
+  this.resetEl.addEventListener('click', e => this.onResetClick(e));
 }
 
+// 엔터입력하면 검색결과가 보인다.
 FormView.onKeyUp = function(e) {
-  console.log(e);
+  //엔터키인지 키값으로 구별할 수 있음
+  const enterKey = 13;
   this.showResetBtn(this.inputEl.value.length);
+  if (e.keyCode !== enterKey){
+    return ;
+  }
+  //..todo 엔터일 때 메인컨트롤러에게 해당 이벤트발생함과 데이터를 전달해줌.
+  this.emit('@submit', {input : this.inputEl.value});
 }
 
 export default FormView;
