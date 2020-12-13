@@ -47,6 +47,7 @@ FormView.onKeyUp = function (e) {
   //엔터키인지 키값으로 구별할 수 있음
   const enterKey = 13;
   this.showResetBtn(this.inputEl.value.length);
+  if (!this.inputEl.value.length) { this.emit('@reset'); }
   if (e.keyCode !== enterKey) {
     return;
   }
