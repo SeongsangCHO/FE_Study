@@ -12,12 +12,23 @@ ResultView.setup = function(el){
 //server로부터 데이터를 받아 그려주는 부분
 ResultView.render = function(data = []){
   console.log(tag, 'render()', data);
-  this.el.innerHTML = data.length ? this.getSearchResultsHTML(data) : '검색결과가 없습니다.';
+  this.el.innerHTML = data.length ? this.getSearchResultsHtml(data) : '검색결과가 없습니다.';
+  console.log(this.el.innerHTML);
+  
 }
 
-ResultView.getSearchResultsHTML = function(data){
-  debugger
+ResultView.getSearchResultsHtml = function(data){
+  return data.reduce((html, item) => {
+    html += this.getSearchResultsItemHtml(item);
+    return html;
+  }, '<ul>') + '</ul>'
 }
 
-
+ResultView.getSearchResultsItemHtml = function (item) {
+  return `<li>
+    <img src=${item.image}></img>
+    <p>${item.name}</p>
+    </li>
+  `;
+}
 export default ResultView;
