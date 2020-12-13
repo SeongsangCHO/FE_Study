@@ -1,5 +1,7 @@
 import FormView from '../views/FormView.js'
+import ResultView from '../views/ResultView.js'
 
+import SearchModel from '../model/SearchModel.js';
 const tag = '[MainController]';
 
 
@@ -12,16 +14,28 @@ export default {
     FormView.setup(document.querySelector('form'))
       .on('@submit', e => this.onSubmit(e.detail.input))
       .on('@reset', e => this.onResetForm());
-      console.log(FormView);
+
+    ResultView.setup(document.querySelector('#search-result'))
       
+    },
+    search(query){
+      console.log(tag, 'search()', query);
+      //search api call
+      SearchModel.list(query).then(data => {
+        this.onSearchResult(data);
+      });
     },
   onSubmit(input){
     console.log(tag, input);
+    //submit이 발생했을 때, 검색요청을 수행
+    this.search(input);
   },
 
   onResetForm(){
     console.log(tag, 'onResetForm()');
-    
+  },
+  onSearchResult(data){
+    ResultView.render(data);
   }
   
 }

@@ -47,6 +47,7 @@ FormView.onKeyUp = function (e) {
   //엔터키인지 키값으로 구별할 수 있음
   const enterKey = 13;
   this.showResetBtn(this.inputEl.value.length);
+  //입력된 데이터 길이가 0일 때 @reset호출. 근데 detail에 아무런 내용도 없으니 detail:null
   if (!this.inputEl.value.length) { this.emit('@reset'); }
   if (e.keyCode !== enterKey) {
     return;
@@ -58,6 +59,8 @@ FormView.onKeyUp = function (e) {
 };
 
 FormView.onClickReset = function (e) {
+  console.log('clickReset');
+  
   this.emit('@reset');
   this.showResetBtn(false);
 };
