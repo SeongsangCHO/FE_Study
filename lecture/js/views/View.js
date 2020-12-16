@@ -32,7 +32,6 @@ export default {
   },
 
   emit(event, data) {
-    console.log(tag, ' .emit() ', event,'이벤트');
     const evt = new CustomEvent(event, { detail: data });
     this.el.dispatchEvent(evt);
     return this;
