@@ -27,8 +27,10 @@ HistoryView.bindRemoveBtn = function () {
       // 추가하지 않으면 버튼클릭시 clickHistory가 수행됨.
       //현재 btn-remove는 search-history의 자손임.
       //이벤트가 상위 element로 전파되는 것을 막음
-      
-      e.stopPropagation();
+
+      // e.stopPropagation();
+      console.log(e.target.tagName);
+      if (e.target.tagName != 'BUTTON') return ;
       this.onRemove(btn.parentElement.dataset.keyword);
     })
   });

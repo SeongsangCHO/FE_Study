@@ -37,6 +37,10 @@ KeywordView.bindClickEvent = function () {
 KeywordView.onClickKeyword = function (e) {
   //클릭된 키워드를 알기 위해서 data-keyword를 사용
   const {keyword} = e.currentTarget.dataset;
+  if(e.target.tagName == 'BUTTON'){
+    return ;
+  }
+  
   //클릭시 검색결과 페이지로 변경하기 위해 main에 알려줌
   this.emit('@click',{keyword});  
 }
