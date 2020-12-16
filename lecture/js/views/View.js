@@ -25,8 +25,6 @@ export default {
   },
 
   on(event, handler) {
-    console.log(tag, ' .on() ', event,'이벤트',handler,'handler 등록');
-    
     this.el.addEventListener(event, handler);
     return this;
   },

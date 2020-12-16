@@ -10,6 +10,11 @@ TabView.setup = function (el) {
   return this;
 };
 
+TabView.setActiveTab = function (tabName) {
+  Array.from(this.el.children).forEach((li) => {
+    li.className = li.innerHTML === tabName ? "active" : "";
+  });
+};
 TabView.bindClick = function(el){
   //li태그에 클릭event 등록
   Array.from(this.el.querySelectorAll("li")).forEach((li) => {
@@ -19,14 +24,10 @@ TabView.bindClick = function(el){
 }
 
 TabView.onClick = function(tabName) {
-  this.setActiveTap(tabName);
+  this.setActiveTab(tabName);
   this.emit('@changeTab', {tabName});
 }
 
-TabView.setActiveTap = function (tabName) {
-  Array.from(this.el.querySelectorAll("li")).forEach((li) => {
-    li.className = li.innerHTML === tabName ? "active" : "";
-  });
-};
+
 
 export default TabView;

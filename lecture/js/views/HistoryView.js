@@ -19,7 +19,6 @@ HistoryView.getKeywordsHtml = function (data) {
 };
 
 HistoryView.bindRemoveBtn = function () {
-  console.log(this.el);
   Array.from(
     this.el.querySelectorAll("button.btn-remove")
   ).forEach((btn) => {
@@ -29,8 +28,7 @@ HistoryView.bindRemoveBtn = function () {
       //이벤트가 상위 element로 전파되는 것을 막음
 
       // e.stopPropagation();
-      console.log(e.target.tagName);
-      if (e.target.tagName != 'BUTTON') return ;
+      // if (e.target.tagName != 'BUTTON') return ;
       this.onRemove(btn.parentElement.dataset.keyword);
     })
   });

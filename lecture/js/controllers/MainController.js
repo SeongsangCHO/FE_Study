@@ -19,33 +19,37 @@ export default {
       .on("@submit", (e) => this.onSubmit(e.detail.input))
       .on("@reset", (e) => this.onResetForm());
 
-    TabView.setup(document.querySelector("#tabs"))
-    .on("changeTab", (e) => this.onChangeTab(e.detail.tabName)
+    TabView.setup(document.querySelector("#tabs")).on("@changeTab", (e) =>
+      this.onChangeTab(e.detail.tabName)
     );
 
-    KeywordView.setup(document.querySelector("#search-keyword"))
-    .on("@click",  (e) => this.onClickKeyword(e.detail.keyword)
+    KeywordView.setup(document.querySelector("#search-keyword")).on(
+      "@click",
+      (e) => this.onClickKeyword(e.detail.keyword)
     );
 
     HistoryView.setup(document.querySelector("#search-history"))
-      .on("@click",   (e) => this.onClickHistory(e.detail.keyword))
-      .on('@remove', (e) => this.onRemoveHistory(e.detail.keyword))
+      .on("@click", (e) => this.onClickHistory(e.detail.keyword))
+      .on("@remove", (e) => this.onRemoveHistory(e.detail.keyword));
 
     ResultView.setup(document.querySelector("#search-result"));
-    this.selectedTab = "최근 검색어";
+    this.selectedTab = "추천 검색어";
     this.renderView();
   },
   renderView() {
-    console.log(tag, "renderView()");
     if (this.selectedTab == "추천 검색어") {
       this.fetchSearchKeyword();
+      HistoryView.hide();
     } else {
       this.fetchSearchHistory();
+      KeywordView.hide();
     }
     ResultView.hide();
-    TabView.setActiveTap(this.selectedTab);
+    TabView.setActiveTab(this.selectedTab);
   },
   fetchSearchHistory() {
+    console.log(tag, "fetchSearchHistory()");
+
     HistoryModel.list().then((data) => {
       HistoryView.render(data).bindRemoveBtn();
     });
@@ -56,6 +60,7 @@ export default {
   search(query) {
     FormView.setValue(query);
     //search api call
+    HistoryModel.add(query);
     SearchModel.list(query).then((data) => {
       this.onSearchResult(data);
     });
@@ -66,7 +71,6 @@ export default {
   },
 
   onResetForm() {
-    console.log(tag, "onResetForm()");
     ResultView.hide();
     TabView.show();
     this.renderView();
@@ -74,10 +78,14 @@ export default {
   onSearchResult(data) {
     TabView.hide();
     KeywordView.hide();
+    HistoryView.hide();
     ResultView.render(data);
   },
   onChangeTab(tabName) {
-    debugger;
+    console.log(tag, tabName);
+
+    this.selectedTab = tabName;
+    this.renderView();
   },
   onClickKeyword(keyword) {
     this.search(keyword);
@@ -85,7 +93,7 @@ export default {
   onClickHistory(keyword) {
     this.search(keyword);
   },
-  onRemoveHistory(keyword){
+  onRemoveHistory(keyword) {
     HistoryModel.remove(keyword);
     this.renderView();
   },

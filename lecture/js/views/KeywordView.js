@@ -10,6 +10,8 @@ KeywordView.setup = function (el){
 }
 
 KeywordView.render = function(data = []){
+  console.log(tag,this.el);
+  
   this.el.innerHTML = data.length ? this.getKeywordsHtml(data) : '추천 검색어가 없습니다.';
   //DOM에 추가되고나서 이벤트 바인딩
   this.bindClickEvent();
