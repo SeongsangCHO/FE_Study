@@ -40,14 +40,13 @@ export default {
     KeywordModel.list().then((data) => KeywordView.render(data));
   },
   search(query) {
-    console.log(tag, "search()", query);
+    FormView.setValue(query);
     //search api call
     SearchModel.list(query).then((data) => {
       this.onSearchResult(data);
     });
   },
   onSubmit(input) {
-    console.log(tag, input);
     //submit이 발생했을 때, 검색요청을 수행
     this.search(input);
   },
@@ -56,6 +55,7 @@ export default {
     console.log(tag, "onResetForm()");
     ResultView.hide();
     TabView.show();
+    this.renderView();
   },
   onSearchResult(data) {
     TabView.hide();

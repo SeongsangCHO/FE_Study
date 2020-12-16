@@ -45,6 +45,8 @@ export default {
   },
 
   show() {
+    console.log(this,'[show]');
+    
     this.el.style.display = "";
     return this;
   },

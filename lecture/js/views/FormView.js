@@ -54,14 +54,15 @@ FormView.onKeyUp = function (e) {
   }
   //..todo 엔터일 때 메인컨트롤러에게 해당 이벤트발생함과 데이터를 전달해줌.
   this.emit("@submit", { input: this.inputEl.value });
-  
-  
 };
 
 FormView.onClickReset = function (e) {
-  console.log('clickReset');
-  
   this.emit('@reset');
   this.showResetBtn(false);
 };
+
+FormView.setValue = function(value){
+  this.inputEl.value = value;
+  this.showResetBtn(this.inputEl.value.length);
+}
 export default FormView;
