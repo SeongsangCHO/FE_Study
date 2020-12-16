@@ -1,8 +1,10 @@
 import FormView from "../views/FormView.js";
 import ResultView from "../views/ResultView.js";
 import TabView from "../views/TabView.js";
+import KeywordView from "../views/KeywordView.js";
 
 import SearchModel from "../model/SearchModel.js";
+import KeywordModel from "../model/KeywordModel.js";
 const tag = "[MainController]";
 
 /*.on의 첫번째 인자는 등록된 이벤트를 넣어도 되고 커스텀하게 넣어도됨
@@ -15,16 +17,25 @@ export default {
       .on("@submit", (e) => this.onSubmit(e.detail.input))
       .on("@reset", (e) => this.onResetForm());
 
-    TabView.setup(document.querySelector("#tabs"));
+    TabView.setup(document.querySelector("#tabs")).on("changeTab", (e) =>
+      this.onChangeTab(e.detail.tabName)
+    );
+
+    KeywordView.setup(document.querySelector("#search-keyword"));
     ResultView.setup(document.querySelector("#search-result"));
     this.selectedTab = "추천 검색어";
     this.renderView();
   },
   renderView() {
     console.log(tag, "renderView()");
-
+    if (this.selectedTab == "추천 검색어") {
+      this.fetchSearchKeyword();
+    }
     ResultView.hide();
     TabView.setActiveTap(this.selectedTab);
+  },
+  fetchSearchKeyword(){
+    KeywordModel.list().then((data) => KeywordView.render(data));
   },
   search(query) {
     console.log(tag, "search()", query);
@@ -47,5 +58,8 @@ export default {
   },
   onSearchResult(data) {
     ResultView.render(data);
+  },
+  onChangeTab(tabName) {
+    debugger;
   },
 };
