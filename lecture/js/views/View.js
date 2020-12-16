@@ -40,13 +40,10 @@ export default {
   hide() {
     this.el.style.display = "none";
     console.log('호출');
-    
     return this;
   },
 
   show() {
-    console.log(this,'[show]');
-    
     this.el.style.display = "";
     return this;
   },

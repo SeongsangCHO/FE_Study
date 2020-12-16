@@ -2,8 +2,10 @@ import FormView from "../views/FormView.js";
 import ResultView from "../views/ResultView.js";
 import TabView from "../views/TabView.js";
 import KeywordView from "../views/KeywordView.js";
+import HistoryView from "../views/HistoryView.js";
 
 import SearchModel from "../model/SearchModel.js";
+import HistoryModel from "../model/HistoryModel.js";
 import KeywordModel from "../model/KeywordModel.js";
 const tag = "[MainController]";
 
@@ -17,26 +19,38 @@ export default {
       .on("@submit", (e) => this.onSubmit(e.detail.input))
       .on("@reset", (e) => this.onResetForm());
 
-    TabView.setup(document.querySelector("#tabs")).on("changeTab", (e) =>
-      this.onChangeTab(e.detail.tabName)
+    TabView.setup(document.querySelector("#tabs"))
+    .on("changeTab", (e) => this.onChangeTab(e.detail.tabName)
     );
 
     KeywordView.setup(document.querySelector("#search-keyword"))
-      .on('@click', e => this.onClickKeyword(e.detail.keyword))
+    .on("@click",  (e) => this.onClickKeyword(e.detail.keyword)
+    );
+
+    HistoryView.setup(document.querySelector("#search-history"))
+      .on("@click",   (e) => this.onClickHistory(e.detail.keyword))
+      .on('@remove', (e) => this.onRemoveHistory(e.detail.keyword))
 
     ResultView.setup(document.querySelector("#search-result"));
-    this.selectedTab = "추천 검색어";
+    this.selectedTab = "최근 검색어";
     this.renderView();
   },
   renderView() {
     console.log(tag, "renderView()");
     if (this.selectedTab == "추천 검색어") {
       this.fetchSearchKeyword();
+    } else {
+      this.fetchSearchHistory();
     }
     ResultView.hide();
     TabView.setActiveTap(this.selectedTab);
   },
-  fetchSearchKeyword(){
+  fetchSearchHistory() {
+    HistoryModel.list().then((data) => {
+      HistoryView.render(data).bindRemoveBtn();
+    });
+  },
+  fetchSearchKeyword() {
     KeywordModel.list().then((data) => KeywordView.render(data));
   },
   search(query) {
@@ -65,7 +79,14 @@ export default {
   onChangeTab(tabName) {
     debugger;
   },
-  onClickKeyword(keyword){
+  onClickKeyword(keyword) {
     this.search(keyword);
-  }
+  },
+  onClickHistory(keyword) {
+    this.search(keyword);
+  },
+  onRemoveHistory(keyword){
+    HistoryModel.remove(keyword);
+    this.renderView();
+  },
 };
