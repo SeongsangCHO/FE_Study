@@ -6,11 +6,11 @@ import View from "./View.js";
 const tag = "[ResultView.js]";
 
 const ResultView = Object.create(View);
-
 ResultView.setup = function (el) {
   this.init(el);
-  console.log(this);
-
+  this.isInterval;
+  this.clockEl = this.el.querySelector("#clock");
+  this.initClockContent();
   return this;
 };
 
@@ -20,18 +20,38 @@ ResultView.getTime = function () {
   */
   let result = "";
   const date = new Date();
-  let hour = String(date.getHours()).padStart(2,'0');
-  let minutes = String(date.getMinutes()).padStart(2,'0');
-  let seconds = String(date.getSeconds()).padStart(2,'0');
-  result = result.concat(hour,":", minutes,":", seconds);
-  return result;
+  let hour = String(date.getHours()).padStart(2, "0");
+  let minutes = String(date.getMinutes()).padStart(2, "0");
+  let seconds = String(date.getSeconds()).padStart(2, "0");
+  return result.concat(hour, ":", minutes, ":", seconds);
 };
 
+ResultView.initClockContent = function () {
+  this.clockEl.innerText = this.getTime();
+};
+
+ResultView.stopWorker = function () {
+  if (this.isInterval) {
+    clearInterval(this.isInterval);
+  }
+  return this;
+};
+
+/*
+ * 클릭될 때마다 타이머 생성되네.
+ ! 초기 진입시 인터벌 수행이면 인터벌 삭제
+ ! 매번 진입해도 이전인터벌 삭제 후 재생성
+ */
+
 ResultView.clockWorker = function () {
+  this.initClockContent();
+  if (this.isInterval) {
+    this.stopWorker();
+  }
   const updateTime = () => {
-    this.el.querySelector("#clock").innerText = this.getTime();
+    this.clockEl.innerText = this.getTime();
   };
-  setInterval(updateTime, 1000);
+  this.isInterval = setInterval(updateTime, 1000);
 };
 
 export default ResultView;
