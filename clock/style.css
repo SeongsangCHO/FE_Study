@@ -8,6 +8,10 @@ body {
   background-color: var(--white-theme-content-background);
 }
 
+svg{
+  padding: 0;
+  margin: 0;
+}
 div {
   box-sizing: border-box;
   border: 1px solid #ccc;
@@ -16,6 +20,11 @@ ul {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+button{
+  cursor: pointer;
+  border: none;
+  outline: none;
 }
 /* init */
 
@@ -71,7 +80,7 @@ ul {
 }
 
 .left-side-bar {
-  flex: 1;
+  flex: 2;
   display: flex;
   justify-content: center;
 }
@@ -81,9 +90,24 @@ ul {
 }
 
 .side-menu {
+  display: inline-block;
 }
 
 .side-menu-li {
   margin: 5px 0 5px 0;
   text-align: center;
+}
+
+
+/* change View Btn */
+.btn-alram, .btn-stopwatch, .btn-clock{
+  width: 100%;
+  background-color: #ccc;
+}
+
+/* icons */
+.fa-clock, .fa-stopwatch, .fa-clock{
+  display: block;
+  margin: 0;
+  font-size: 50px;
 }
