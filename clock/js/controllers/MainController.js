@@ -9,7 +9,7 @@ const tag = "[MainController.js]";
 export default {
   init() {
     console.log(tag);
-    this.selectedTab = "시계";
+    this.selectedTab = "스톱워치";
     ModeChangeView.setup(document.querySelector("#btn-toggle"));
     TabView.setup(document.querySelector(".side-menu"))
       .on('@changeTab', e => this.onChangeTab(e.detail.tabName));
