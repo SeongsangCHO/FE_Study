@@ -87,8 +87,20 @@ button{
 
 .content {
   flex: 9;
+  display: flex;
+  flex-direction: column;
 }
-
+#timer{
+  display: flex;
+  flex: 5;
+  align-items: center;
+  justify-content: center;
+}
+#btn-section{
+  display: flex;
+  justify-content: space-around;
+  flex: 1;
+}
 .side-menu {
   display: inline-block;
 }

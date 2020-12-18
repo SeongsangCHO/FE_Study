@@ -14,7 +14,7 @@ TabView.setup = function(el){
 
 TabView.bindClickEvent = function (){
   Array.from(this.el.querySelectorAll('button')).forEach((li) => {
-    li.addEventListener('click', e => this.onClick(e.currentTarget.className));
+    li.addEventListener('click', e => this.onClick(e.currentTarget.innerText));
   });
 }
 
