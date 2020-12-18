@@ -21,10 +21,21 @@ ul {
 /* variable*/
 
 :root {
-  --white-theme-background: #ffffff;
-  --dark-theme-background: #121212;
+  --white-theme-content-background: #ffffff;
+  --dark-theme-content-background: #121212;
 }
 /* variable*/
+
+
+/* theme */
+.dark-content{
+  background-color: var(--dark-theme-content-background);
+  color: #ccc;
+}
+.white-content{
+  background-color: var(--white-theme-content-background);
+}
+
 
 /* box size */
 
