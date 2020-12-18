@@ -20,31 +20,33 @@ ModeChangeView.setup = function (el) {
   this.init(el);
   this.bindClickEvent();
   this.currentThemeApply();
-  console.log(status);
-
   return this;
 };
 
 /* Match current config theme */
 ModeChangeView.currentThemeApply = function () {
   if (status.currentTheme == "dark") {
+    status.isToggled = true;
     this.changeTheme("dark-content");
   }
   if (status.currentTheme == "light") {
-    this.changeTheme("light-content");
+    this.changeTheme("white-content");
   }
 };
 
 ModeChangeView.bindClickEvent = function () {
-  //토글이벤트 등록
-  this.el.addEventListener("click", (e) => this.changeTheme("dark-content"));
+  /* click event add listener  */
+  this.el.addEventListener("click", (e) => {
+    status.isToggled = !status.isToggled;
+    return status.isToggled ? this.changeTheme("dark-content") : this.changeTheme("white-content"); 
+    });
 };
 
 ModeChangeView.changeTheme = function (mode) {
-  /* iterate object  */
-
+  /* iterate object , remove exsiting mode then add clicked mode*/
   for (let element in DOM) {
-    DOM[element].classList.toggle(mode);
+    DOM[element].classList.remove("dark-content","white-content");
+    DOM[element].classList.add(mode);
   }
 };
 

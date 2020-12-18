@@ -5,6 +5,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: var(--white-theme-content-background);
 }
 
 div {
@@ -21,19 +22,23 @@ ul {
 /* variable*/
 
 :root {
-  --white-theme-content-background: #ffffff;
+  --white-theme-content-background: #cccccc;
   --dark-theme-content-background: #121212;
+  --time-short: .3s;
 }
 /* variable*/
 
 
 /* theme */
 .dark-content{
+  transition-duration: var(--time-short);
   background-color: var(--dark-theme-content-background);
   color: #ccc;
 }
 .white-content{
+  transition-duration: var(--time-short);
   background-color: var(--white-theme-content-background);
+  color: #121212;
 }
 
 
@@ -44,6 +49,7 @@ ul {
   height: 100%;
 }
 .nav-bar {
+  
 }
 .logo-box {
   display: inline-block;
