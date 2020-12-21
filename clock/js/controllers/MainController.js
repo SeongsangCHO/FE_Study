@@ -3,13 +3,12 @@ import TabView from "../views/TabView.js";
 import ClockView from "../views/ClockView.js";
 import ClockContentsView from "../views/ClockContentsView.js";
 import StopWatchView from "../views/StopWatchView.js";
-
+import TodoListView from '../views/TodoListView.js';
 
 const tag = "[MainController.js]";
 
 export default {
   init() {
-    console.log(tag);
     this.selectedTab = "스톱워치";
     ModeChangeView.setup(document.querySelector("#btn-toggle"));
     TabView.setup(document.querySelector(".side-menu"))
@@ -17,6 +16,7 @@ export default {
     ClockView.setup(document.querySelector("div.content"))
     
     StopWatchView.setup(document.querySelector("div.content"))
+    TodoListView.setup(document.querySelector(".todo-container"))
     this.renderView();
 
   },

@@ -42,6 +42,7 @@ button{
   --default-white-background: #cccccc;
   --dark-theme-background: #121212;
   --time-short: .3s;
+  --time-long: 1s;
   --left-side-bar-width: 120px;
 }
 /* variable*/
@@ -135,18 +136,33 @@ button{
 }
 
 .todo-container{
-  flex: 5;
+  display: flex;
+  flex: 0;
   border: .1px solid red;
+  transition:all 2s ease-in-out;
   transition-duration: var(--time-short);
+  overflow: hidden;
+  min-height: 30px;
 }
 
+.todo-content{
+  flex: 1;
+}
 
+.btn-fold{
+  position: fixed;
+  width: 30px;
+  right: 5px;
+  display: inline;
+}
 /* change View Btn */
 .btn-alram, .btn-stopwatch, .btn-clock{
   width: 100%;
   background-color: var(--default-white-background);
 }
-
+.btn-todo-add{
+  height: 30px;
+}
 /* icons */
 .fa-clock, .fa-stopwatch, .fa-clock{
   display: block;
@@ -164,4 +180,14 @@ button{
 nav.dark{
   background-color: #565656;
   color: #fff;
+}
+
+/* slider animation */
+.open {
+  flex: 5;
+  transition:all .3s ease-in-out;
+  transition-duration: var(--time-short);
+}
+
+.todo-container .open{
 }

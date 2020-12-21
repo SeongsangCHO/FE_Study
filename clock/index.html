@@ -18,6 +18,7 @@
           <button id="btn-toggle" type="button">toggle</button>
         </ul>
     </nav>
+
     <div class="content-wrapper">
       <div class="content-container">
         <div class="left-side-bar">
@@ -53,14 +54,33 @@
             <span id="clock" class="clock-content">clock</span>
           </div>
         </div>
-
       </div>
+      
       <div class="todo-container">
+        <button class="btn-fold">></button>
         <div class="todo-content">
-          이거대신 투두섹션 추가.
-          <button>1</button>
-          <button>1</button>
-          <button>1</button>
+          <button class="btn-todo-add">중요급함+</button>
+          <ul class="todo-ul">
+            <li class="todo-li">밥먹기(드래그앤드랍되야함)
+              <button>+</button>
+              <button>-</button>
+            </li>
+            <li class="todo-li">잠자기</li>
+            <li class="todo-li">산책가기</li>
+            <li class="todo-li">코딩하기</li>
+          </ul>
+        </div>
+        <div class="todo-content">
+          <button class="btn-todo-add">안중요 급함+</button>
+
+        </div>
+        <div class="todo-content">
+          <button class="btn-todo-add">중요 안급함+</button>
+
+        </div>
+        <div class="todo-content">
+          <button class="btn-todo-add">안중요 안급함+</button>
+
         </div>
       </div>
     </div>
