@@ -5,7 +5,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: var(--white-theme-content-background);
+  background-color: var(--default-white-background);
 }
 
 svg{
@@ -26,28 +26,25 @@ button{
   border: none;
   outline: none;
 }
+
+
 /* init */
 
 /* variable*/
 
 :root {
-  --white-theme-content-background: #cccccc;
-  --dark-theme-content-background: #121212;
+  --default-white-background: #cccccc;
+  --dark-theme-background: #121212;
   --time-short: .3s;
 }
 /* variable*/
 
 
 /* theme */
-.dark-content{
+.dark{
   transition-duration: var(--time-short);
-  background-color: var(--dark-theme-content-background);
+  background-color: var(--dark-theme-background);
   color: #ccc;
-}
-.white-content{
-  transition-duration: var(--time-short);
-  background-color: var(--white-theme-content-background);
-  color: #121212;
 }
 
 
@@ -89,6 +86,7 @@ button{
   flex: 9;
   display: flex;
   flex-direction: column;
+  transition-duration: var(--time-short);
 }
 #timer{
   display: flex;
@@ -114,7 +112,7 @@ button{
 /* change View Btn */
 .btn-alram, .btn-stopwatch, .btn-clock{
   width: 100%;
-  background-color: #ccc;
+  background-color: var(--default-white-background);
 }
 
 /* icons */
