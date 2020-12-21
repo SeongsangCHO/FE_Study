@@ -16,32 +16,45 @@ const status = {
 const ModeChangeView = Object.create(View);
 
 ModeChangeView.setup = function (el) {
+  console.log(status.currentTheme);
+
   this.init(el);
-  this.getUserConfigTheme();
-  this.setUserConfigTheme();
-  this.bindClickEvent();
+  this.getUserConfigTheme()
+    .setUserConfigTheme()
+    .bindClickEvent();
+
   return this;
 };
 
-ModeChangeView.bindClickEvent = function(){
-  this.el.addEventListener('click', e => this.onToggle(e))
-}
+ModeChangeView.bindClickEvent = function () {
+  this.el.addEventListener("click", (e) => this.onToggle(e));
+};
 
-ModeChangeView.onToggle = function(e){
+
+ModeChangeView.onToggle = function (e) {
   //theme item이 light => on, dark => off
   this.toggleDarkAttribute();
-}
+  DOM.contentEl.classList.contains("dark")
+    ? localStorage.setItem("theme", "dark")
+    : localStorage.setItem("theme", "light");
+};
 
-ModeChangeView.toggleDarkAttribute = function(){
-  for(let element in DOM){
-    DOM[element].classList.toggle('dark');
+
+ModeChangeView.toggleDarkAttribute = function () {
+  for (let element in DOM) {
+    DOM[element].classList.toggle("dark");
   }
-}
-ModeChangeView.setUserConfigTheme = function(){
-  if(status.currentTheme == 'dark'){
-    this.addDarkAttribute();
+};
+
+
+ModeChangeView.setUserConfigTheme = function () {
+  if (status.currentTheme == "dark") {
+    this.toggleDarkAttribute();
   }
-}
+  return this;
+};
+
+
 ModeChangeView.getUserConfigTheme = function () {
   //If hasn't localStorage
   if (!status.currentTheme) {
@@ -49,7 +62,10 @@ ModeChangeView.getUserConfigTheme = function () {
     status.preferDarkScheme.matches
       ? localStorage.setItem("theme", "dark")
       : localStorage.setItem("theme", "light");
+    status.currentTheme = localStorage.getItem("theme");
   }
-  status.currentTheme = localStorage.getItem("theme");
+  return this;
 };
+
+
 export default ModeChangeView;
