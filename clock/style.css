@@ -1,3 +1,9 @@
+/* clock font */
+@font-face{
+  font-family:'digital-clock-font';
+  src: url('put_the_location_to_your_font.ttf or .otf');
+ }
+ /* clock font */
 /* init */
 html,
 body {
@@ -14,7 +20,6 @@ svg{
 }
 div {
   box-sizing: border-box;
-  border: 1px solid #ccc;
 }
 ul {
   margin: 0;
@@ -33,19 +38,16 @@ button{
 /* variable*/
 
 :root {
+  --default-nav-bar-background:#0275D8;
   --default-white-background: #cccccc;
   --dark-theme-background: #121212;
   --time-short: .3s;
+  --left-side-bar-width: 120px;
 }
 /* variable*/
 
 
 /* theme */
-.dark{
-  transition-duration: var(--time-short);
-  background-color: var(--dark-theme-background);
-  color: #ccc;
-}
 
 
 /* box size */
@@ -54,31 +56,49 @@ button{
   width: 100%;
   height: 100%;
 }
+
 .nav-bar {
-  
+  width: 100%;
+  height: 75px;
+  left: 0;
+  position: fixed;
+  background-color: var(--default-nav-bar-background);
+  transition-duration: var(--time-short);
+  color: #ccc;
 }
+
 .logo-box {
   display: inline-block;
 }
+
 .nav-menu {
   display: inline;
   float: right;
 }
+
 .nav-li {
   float: left;
   margin: 0 15px 0 15px;
 }
 
+.content-wrapper{
+  display: flex;
+  padding-top: 75px;
+  height: 100%;
+  flex-direction: column;
+  top: 75px;
+}
 .content-container {
   display: flex;
-  width: 100%;
-  margin-top: 50px;
+  flex:1;
   text-align: center;
+  flex-direction: row;
 }
 
 .left-side-bar {
-  flex: 2;
   display: flex;
+  flex: 1;
+  width: var(--left-side-bar-width);
   justify-content: center;
 }
 
@@ -88,17 +108,23 @@ button{
   flex-direction: column;
   transition-duration: var(--time-short);
 }
+
 #timer{
   display: flex;
   flex: 5;
   align-items: center;
   justify-content: center;
 }
-#btn-section{
-  display: flex;
-  justify-content: space-around;
-  flex: 1;
+
+.clock-content{
+  font-family:'Orbitron';
+  font-size: 70px;
+  flex:1;
+  background-color: var(--default-white-background);
+  color: var(--dark-theme-background);
+  transition-duration: var(--time-short);
 }
+
 .side-menu {
   display: inline-block;
 }
@@ -106,6 +132,12 @@ button{
 .side-menu-li {
   margin: 5px 0 5px 0;
   text-align: center;
+}
+
+.todo-container{
+  flex: 5;
+  border: .1px solid red;
+  transition-duration: var(--time-short);
 }
 
 
@@ -120,4 +152,16 @@ button{
   display: block;
   margin: 0;
   font-size: 50px;
+}
+
+.dark{
+/* 뒤에나오는 css가 우선순위가 높다.*/
+  transition-duration: var(--time-short);
+  background-color: var(--dark-theme-background);
+  color: yellow;
+}
+
+nav.dark{
+  background-color: #565656;
+  color: #fff;
 }

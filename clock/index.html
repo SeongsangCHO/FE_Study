@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="./style.css">
   <title>Clock</title>
 </head>
@@ -17,41 +18,46 @@
           <button id="btn-toggle" type="button">toggle</button>
         </ul>
     </nav>
-    <div class="content-container">
-      <div class="left-side-bar">
-        <ul class="side-menu">
-          <li class="side-menu-li">
-            <button class="btn-alram">
-              <i class="fas fa-clock"></i>
-              <span>자명종</span>
-            </button>
-          </li>
-          <li class="side-menu-li">
-            <button class="btn-alram">
-              <i class="fas fa-clock"></i>
-              <span>타이머</span>
-            </button>
-          </li>
-          <li class="side-menu-li">
-             <button class="btn-stopwatch">
-               <i class="fas fa-stopwatch"></i>
-               <span>스톱워치</span>
+    <div class="content-wrapper">
+      <div class="content-container">
+        <div class="left-side-bar">
+          <ul class="side-menu">
+            <li class="side-menu-li">
+              <button class="btn-alram">
+                <i class="fas fa-clock"></i>
+                <span>자명종</span>
               </button>
             </li>
-          <li class="side-menu-li">
-            <button class="btn-clock">
-              <i class="far fa-clock"></i>
-              <span>시계</span>
-            </button>
-          </li>
-        </ul>
-      </div>
-      <div class="content">
-        <div id="timer">
-          <span id="clock">clock</span>
+            <li class="side-menu-li">
+              <button class="btn-alram">
+                <i class="fas fa-clock"></i>
+                <span>타이머</span>
+              </button>
+            </li>
+            <li class="side-menu-li">
+              <button class="btn-stopwatch">
+                <i class="fas fa-stopwatch"></i>
+                <span>스톱워치</span>
+                </button>
+              </li>
+            <li class="side-menu-li">
+              <button class="btn-clock">
+                <i class="far fa-clock"></i>
+                <span>시계</span>
+              </button>
+            </li>
+          </ul>
         </div>
-        <div id="btn-section">
-          btn-section
+        <div class="content">
+          <div id="timer">
+            <span id="clock" class="clock-content">clock</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="todo-container">
+        <div class="todo-content">
+          이거대신 투두섹션 추가.
           <button>1</button>
           <button>1</button>
           <button>1</button>
