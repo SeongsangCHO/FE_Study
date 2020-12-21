@@ -153,6 +153,7 @@ button{
   position: fixed;
   width: 30px;
   right: 5px;
+  height: 30px;
   display: inline;
 }
 /* change View Btn */
@@ -187,7 +188,4 @@ nav.dark{
   flex: 5;
   transition:all .3s ease-in-out;
   transition-duration: var(--time-short);
-}
-
-.todo-container .open{
 }
