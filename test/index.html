@@ -10,11 +10,34 @@
   <div id = "box" class="slider">Show / Hide</div>
   <button onclick="slideToggle('box');">Slide</button>
 
+
+  <div class="drag-zone">
+    <span class="item" draggable="true">드래그 아이템</span>
+  </div>
+  <div class="drop-zone">
+    드랍 존
+  </div>
   <script>
     function slideToggle(el) {
       var elem = document.getElementById(el);
       elem.classList.toggle("open");
     }
+
+
+    const item = document.querySelector('span.item');
+    const dropZone = document.querySelector('.drop-zone');
+    
+    item.addEventListener('dragstart', e=>{
+      console.log('drag start')
+    });
+    dropZone.addEventListener('dragover', e=>{
+      console.log('ondragOver')
+      e.preventDefault();
+    });
+    dropZone.addEventListener('drop', e=>{
+      console.log('ondrop')
+    });
+    console.log(item)
   </script>
 </body>
 </html>

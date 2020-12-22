@@ -17,3 +17,11 @@ body{
 .slider.open {
     height:400px;
 }
+
+
+
+div{
+  border: 1px solid black;
+  width: 150px;
+  height: 150px;
+}
