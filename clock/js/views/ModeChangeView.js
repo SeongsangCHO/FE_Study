@@ -18,8 +18,6 @@ const status = {
 const ModeChangeView = Object.create(View);
 
 ModeChangeView.setup = function (el) {
-  console.log(status.currentTheme);
-
   this.init(el);
   this.getUserConfigTheme()
     .setUserConfigTheme()

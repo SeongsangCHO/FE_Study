@@ -17,6 +17,7 @@ export default {
     
     StopWatchView.setup(document.querySelector("div.content"))
     TodoListView.setup(document.querySelector(".todo-container"))
+      .on('@openModal', e => this.openModalWindow(e.detail.tagName))
     this.renderView();
 
   },
@@ -43,5 +44,9 @@ export default {
     this.selectedTab = tabName;
     //renderView 되기전 이전 interval stop하고 숨겨야함.
     this.renderView();
+  },
+
+  openModalWindow(tagName){
+    debugger
   }
 };

@@ -8,12 +8,27 @@ const TodoListView = Object.create(View);
 TodoListView.setup = function (el) {
   this.init(el);
   this.slideBtnEl = this.el.querySelector(".btn-fold");
-  this.isToggled = false;
   this.bindSlideEvent();
+  this.bindListAddEvent();
+  console.log(el);
+  
   return this;
 };
 
-/*binding event .btn-fold in el*/
+/* bind todoList add event  */
+TodoListView.bindListAddEvent = function (){
+  Array.from(this.el.querySelectorAll('.btn-todo-add'))
+    .forEach((btn) => {
+      btn.addEventListener('click', e => this.onClickListAdd(e.target.innerText));
+    })
+}
+
+/* Open Modal window */
+TodoListView.onClickListAdd = function (tagName){
+  this.emit('@openModal',{tagName});
+}
+
+/*bind event .btn-fold in el*/
 TodoListView.bindSlideEvent = function () {
   this.slideBtnEl.addEventListener("click", (e) => this.onClickSlider(e));
 };

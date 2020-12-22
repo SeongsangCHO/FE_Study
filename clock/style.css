@@ -1,9 +1,9 @@
 /* clock font */
-@font-face{
-  font-family:'digital-clock-font';
-  src: url('put_the_location_to_your_font.ttf or .otf');
- }
- /* clock font */
+@font-face {
+  font-family: "digital-clock-font";
+  src: url("put_the_location_to_your_font.ttf or .otf");
+}
+/* clock font */
 /* init */
 html,
 body {
@@ -14,7 +14,7 @@ body {
   background-color: var(--default-white-background);
 }
 
-svg{
+svg {
   padding: 0;
   margin: 0;
 }
@@ -26,30 +26,27 @@ ul {
   padding: 0;
   list-style: none;
 }
-button{
+button {
   cursor: pointer;
   border: none;
   outline: none;
 }
-
 
 /* init */
 
 /* variable*/
 
 :root {
-  --default-nav-bar-background:#0275D8;
+  --default-nav-bar-background: #0275d8;
   --default-white-background: #cccccc;
   --dark-theme-background: #121212;
-  --time-short: .3s;
+  --time-short: 0.3s;
   --time-long: 1s;
   --left-side-bar-width: 120px;
 }
 /* variable*/
 
-
 /* theme */
-
 
 /* box size */
 
@@ -82,7 +79,7 @@ button{
   margin: 0 15px 0 15px;
 }
 
-.content-wrapper{
+.content-wrapper {
   display: flex;
   padding-top: 75px;
   height: 100%;
@@ -91,11 +88,12 @@ button{
 }
 .content-container {
   display: flex;
-  flex:1;
+  flex: 1;
   text-align: center;
   flex-direction: row;
 }
 
+/* side bar */
 .left-side-bar {
   display: flex;
   flex: 1;
@@ -110,22 +108,24 @@ button{
   transition-duration: var(--time-short);
 }
 
-#timer{
+/* watch wrapper */
+#timer {
   display: flex;
   flex: 5;
   align-items: center;
   justify-content: center;
 }
 
-.clock-content{
-  font-family:'Orbitron';
+.clock-content {
+  font-family: "Orbitron";
   font-size: 70px;
-  flex:1;
+  flex: 1;
   background-color: var(--default-white-background);
   color: var(--dark-theme-background);
   transition-duration: var(--time-short);
 }
 
+/* side-menu list  */
 .side-menu {
   display: inline-block;
 }
@@ -134,58 +134,87 @@ button{
   margin: 5px 0 5px 0;
   text-align: center;
 }
+/* side-menu list */
 
-.todo-container{
+/* theme toggle change View */
+.btn-alram,
+.btn-stopwatch,
+.btn-clock {
+  width: 100%;
+  background-color: var(--default-white-background);
+}
+.btn-todo-add {
+  height: 30px;
+}
+/* icons */
+.fa-clock,
+.fa-stopwatch,
+.fa-clock {
+  display: block;
+  margin: 0;
+  font-size: 50px;
+}
+
+.dark {
+  /* 뒤에나오는 css가 우선순위가 높다.*/
+  transition-duration: var(--time-short);
+  background-color: var(--dark-theme-background);
+  color: yellow;
+}
+
+nav.dark {
+  background-color: #565656;
+  color: #fff;
+}
+
+/* theme toggle change View */
+
+/* todo part */
+
+.todo-container {
   display: flex;
   flex: 0;
-  border: .1px solid red;
-  transition:all 2s ease-in-out;
+  border: 0.1px solid red;
+  transition: all 2s ease-in-out;
   transition-duration: var(--time-short);
   overflow: hidden;
   min-height: 30px;
 }
 
-.todo-content{
+.todo-content {
   flex: 1;
 }
 
-.btn-fold{
+.btn-fold {
   position: fixed;
   width: 30px;
   right: 5px;
   height: 30px;
   display: inline;
 }
-/* change View Btn */
-.btn-alram, .btn-stopwatch, .btn-clock{
-  width: 100%;
-  background-color: var(--default-white-background);
-}
-.btn-todo-add{
-  height: 30px;
-}
-/* icons */
-.fa-clock, .fa-stopwatch, .fa-clock{
-  display: block;
-  margin: 0;
-  font-size: 50px;
-}
-
-.dark{
-/* 뒤에나오는 css가 우선순위가 높다.*/
-  transition-duration: var(--time-short);
-  background-color: var(--dark-theme-background);
-  color: yellow;
-}
-
-nav.dark{
-  background-color: #565656;
-  color: #fff;
-}
 
 /* slider animation */
 .open {
   flex: 5;
-  transition:all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   transition-duration: var(--time-short);
+}
+
+/* modal */
+#todo-modal {
+  display: none;
+  width: 300px;
+  height: 150px;
+  padding: 30px;
+  background-color: var(--dark-theme-background);
+  border: 1px solid var(--dark-theme-background);
+  border-radius: 3px;
+}
+
+.btn-todo-add{
+
+}
+
+
+#todo-modal-window .btn-modal-close {
 }

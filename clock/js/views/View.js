@@ -28,4 +28,10 @@ export default {
     this.el.style.display = "none"
     return this;
   },
+  setStyle(styles){
+    for(let property in styles){
+      this.el.style[property] = styles[property]; 
+    }
+    return this;
+  }
 }
