@@ -6,27 +6,32 @@ const ModalView = Object.create(View);
 
 ModalView.setup = function(el){
   this.init(el);
+  this.modalBg = document.querySelector('.modal-background');
+  this.closeBtn = this.el.querySelector('.btn-modal-close');
+  this.closeModal();
+  this.bindCloseEvent();
   return this;
 }
 
-ModalView.openModal = function (tagName){
-  const modal = document.createElement('div');
-  const backGround = document.createElement('div');
-  const header = document.createElement('h3');
-  header.innerText = "헤더임";
-  const button = document.createElement('button');
-  button.innerText = "버튼임";
-  // modal.setAttribute("id", "modal-window");
-  modal.classList = 'modal-window';
-  
-  modal.appendChild(header);
-  modal.appendChild(button);
-  document.body.append(modal);
-  backGround.classList = 'modal-background';
-  document.body.append(backGround);
-  console.log('append');
-  console.log(tagName);
+ModalView.bindCloseEvent = function(){
+  this.closeBtn.addEventListener('click', e => this.onClickCloseModal(e));
+}
 
+ModalView.onClickCloseModal = function(e){
+  this.closeModal();
+}
+
+ModalView.closeModal = function(){
+  this.modalBg.classList.remove("modal-open");
+  this.el.classList.remove("modal-open");
+}
+
+ModalView.showModal = function(){
+  this.modalBg.classList.add("modal-open");
+  this.el.classList.add("modal-open");
+}
+
+ModalView.openModal = function (tagName){
 
 }
 export default ModalView;

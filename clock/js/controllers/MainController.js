@@ -11,6 +11,7 @@ const tag = "[MainController.js]";
 export default {
   init() {
     this.selectedTab = "스톱워치";
+
     ModeChangeView.setup(document.querySelector("#btn-toggle"));
     TabView.setup(document.querySelector(".side-menu"))
       .on('@changeTab', e => this.onChangeTab(e.detail.tabName));
@@ -19,11 +20,9 @@ export default {
     StopWatchView.setup(document.querySelector("div.content"))
     TodoListView.setup(document.querySelector(".todo-container"))
       .on('@openModal', e => this.openModalWindow(e.detail.tagId))
-      
-    ModalView.setup(document.querySelector(".todo-container"))
+
+    ModalView.setup(document.querySelector(".modal-window"))
       .on('@closeModal', e => this.closeModalWindow(e))
-
-
     this.renderView();
   },
 
@@ -50,7 +49,8 @@ export default {
   },
 
   openModalWindow(tagId){
-    ModalView.openModal(tagId);
+    // ModalView.openModal(tagId);
+    ModalView.showModal();
   },
   closeModalWindow(){
     ModalView.closeModal();
