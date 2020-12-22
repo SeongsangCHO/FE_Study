@@ -15,6 +15,7 @@ ModalView.setup = function(el){
 
 ModalView.bindCloseEvent = function(){
   this.closeBtn.addEventListener('click', e => this.onClickCloseModal(e));
+  this.modalBg.addEventListener('click', e => this.onClickCloseModal(e));
 }
 
 ModalView.onClickCloseModal = function(e){
