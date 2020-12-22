@@ -11,12 +11,16 @@
   <button onclick="slideToggle('box');">Slide</button>
 
 
-  <div class="drag-zone">
-    <span class="item" draggable="true">드래그 아이템</span>
+  <div class="drag-wrapper">
+    <div class="drag-zone">
+      <span id="item-1" class="item" draggable="true">드래그 아이템</span>
+    </div>
+    <div draggable="true" class="drop-zone">
+      드랍 존
+    </div>
   </div>
-  <div class="drop-zone">
-    드랍 존
-  </div>
+
+
   <script>
     function slideToggle(el) {
       var elem = document.getElementById(el);
@@ -25,17 +29,23 @@
 
 
     const item = document.querySelector('span.item');
-    const dropZone = document.querySelector('.drop-zone');
-    
-    item.addEventListener('dragstart', e=>{
-      console.log('drag start')
+    const dropZone = document.querySelector('.dropZone');
+    const dropWrapper = document.querySelector('.drag-wrapper');
+
+    dropWrapper.addEventListener('drop', e=>{
+      console.log('ondrop')
+      let data = e.dataTransfer.getData("Text");
+      e.target.appendChild(document.getElementById(data));
     });
-    dropZone.addEventListener('dragover', e=>{
+
+    dropWrapper.addEventListener('dragover', e=>{
       console.log('ondragOver')
       e.preventDefault();
     });
-    dropZone.addEventListener('drop', e=>{
-      console.log('ondrop')
+
+    item.addEventListener('dragstart', e=>{
+      console.log('drag start')
+      e.dataTransfer.setData("Text", e.target.id);
     });
     console.log(item)
   </script>
