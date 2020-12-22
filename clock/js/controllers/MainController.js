@@ -4,6 +4,7 @@ import ClockView from "../views/ClockView.js";
 import ClockContentsView from "../views/ClockContentsView.js";
 import StopWatchView from "../views/StopWatchView.js";
 import TodoListView from '../views/TodoListView.js';
+import ModalView from '../views/ModalView.js';
 
 const tag = "[MainController.js]";
 
@@ -18,13 +19,15 @@ export default {
     StopWatchView.setup(document.querySelector("div.content"))
     TodoListView.setup(document.querySelector(".todo-container"))
       .on('@openModal', e => this.openModalWindow(e.detail.tagName))
-    this.renderView();
+      
+    ModalView.setup(document.querySelector(".todo-container"))
+      .on('@closeModal', e => this.closeModalWindow(e))
 
-  },
-  checkTimerWorking(isTimerWorking){
-    console.log(isTimerWorking);
+
     this.renderView();
   },
+
+
   renderView(){
     /*
     * 클릭되었을 때 타이머가 있는지부터 확인하고, 없다면
@@ -47,6 +50,9 @@ export default {
   },
 
   openModalWindow(tagName){
-    debugger
+    ModalView.openModal(tagName);
+  },
+  closeModalWindow(){
+    ModalView.closeModal();
   }
 };
