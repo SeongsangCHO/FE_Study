@@ -19,13 +19,13 @@ TodoListView.setup = function (el) {
 TodoListView.bindListAddEvent = function (){
   Array.from(this.el.querySelectorAll('.btn-todo-add'))
     .forEach((btn) => {
-      btn.addEventListener('click', e => this.onClickListAdd(e.target.innerText));
+      btn.addEventListener('click', e => this.onClickListAdd(e.target.id));
     })
 }
 
 /* Open Modal window */
-TodoListView.onClickListAdd = function (tagName){
-  this.emit('@openModal',{tagName});
+TodoListView.onClickListAdd = function (tagId){
+  this.emit('@openModal',{tagId});
 }
 
 /*bind event .btn-fold in el*/

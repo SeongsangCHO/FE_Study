@@ -18,7 +18,7 @@ export default {
     
     StopWatchView.setup(document.querySelector("div.content"))
     TodoListView.setup(document.querySelector(".todo-container"))
-      .on('@openModal', e => this.openModalWindow(e.detail.tagName))
+      .on('@openModal', e => this.openModalWindow(e.detail.tagId))
       
     ModalView.setup(document.querySelector(".todo-container"))
       .on('@closeModal', e => this.closeModalWindow(e))
@@ -49,8 +49,8 @@ export default {
     this.renderView();
   },
 
-  openModalWindow(tagName){
-    ModalView.openModal(tagName);
+  openModalWindow(tagId){
+    ModalView.openModal(tagId);
   },
   closeModalWindow(){
     ModalView.closeModal();
