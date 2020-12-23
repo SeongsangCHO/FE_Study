@@ -124,7 +124,10 @@ button {
   color: var(--dark-theme-background);
   transition-duration: var(--time-short);
 }
-
+.clock-ms{
+  font-family: "Orbitron";
+  font-size: 30px;
+}
 /* side-menu list  */
 .side-menu {
   display: inline-block;
