@@ -1,6 +1,7 @@
 const tag = '[View.js]'
 
 export default {
+  template:`<li id="{{id}}" class="{{class}}">{{data}}</li>`,
   init(el){
     if(!el) { throw el;}
     this.el = el;

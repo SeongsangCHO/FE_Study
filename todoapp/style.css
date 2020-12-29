@@ -5,9 +5,9 @@
 }
 /* clock font */
 /* init */
-html{
-    width: 100%;
-    height: 100%;
+html {
+  width: 100%;
+  height: 100%;
 }
 body {
   width: 100%;
@@ -16,13 +16,14 @@ body {
   transition-duration: var(--time-short);
   background-color: var(--default-white-background);
 }
-textarea{
-    resize: none;
-    overflow: hidden;
-    display: block;
+textarea {
+  resize: none;
+  overflow: hidden;
+  display: block;
+  border: none;
 }
 div {
-    box-sizing:border-box;
+  box-sizing: border-box;
 }
 
 :root {
@@ -36,8 +37,16 @@ div {
 /*
 header
 */
-.header-describe{
-    width: 100%;
+.header-title {
+  font-size: 30px;
+  background-color: var(--default-white-background);
+  transition-duration: var(--time-short);
+  width: 100%;
+}
+.header-describe {
+  background-color: var(--default-white-background);
+  transition-duration: var(--time-short);
+  width: 100%;
 }
 .wrapper {
   transition-duration: var(--time-short);
@@ -46,7 +55,27 @@ header
   height: 100%;
   padding: 30px 80px 30px 80px;
 }
+/* list-content */
+.list-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
 
+.list-content {
+  flex: 1;
+  margin: 3px;
+}
+.list-ul {
+  list-style: none;
+  padding-left: 0px;
+}
+.list-ul li {
+  background-color: red;
+  border: solid 1px #121212;
+  margin-bottom: 3px;
+  border-radius: 2px;
+}
 .dark {
   /* 뒤에나오는 css가 우선순위가 높다.*/
   transition-duration: var(--time-short);

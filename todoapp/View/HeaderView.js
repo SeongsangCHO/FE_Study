@@ -6,7 +6,6 @@ HeaderView.setup = function (el){
     this.init(el);
     this.titleEl = this.el.querySelector('.header-title');
     this.describeEl = this.el.querySelector('.header-describe');
-    console.log(this.titleEl, this.describeEl);
     this.bindEvent();
     return this;
 }
@@ -16,6 +15,10 @@ HeaderView.bindEvent = function(){
     this.describeEl.addEventListener('input', e => {
         this.describeEl.style.height = "auto";
         this.describeEl.style.height = this.describeEl.scrollHeight +'px';
-    })
+    });
+    this.titleEl.addEventListener('input', e => {
+        this.titleEl.style.height = "auto";
+        this.titleEl.style.height = this.titleEl.scrollHeight +'px';
+    });
 }
 export default HeaderView;

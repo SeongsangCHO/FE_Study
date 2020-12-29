@@ -4,6 +4,8 @@ const tag = "[ModeChangeView.js]";
 
 /* theme changing element object*/
 const DOM = {
+    headerTitleEl : document.querySelector('.header-title'),
+    headerDescribeEl : document.querySelector('.header-describe'),
     contentEl: document.querySelector('.wrapper'),
     body: document.body,
   // todoSectionEl: document.querySelector(".todo-container"),

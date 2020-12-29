@@ -8,19 +8,46 @@
   </head>
   <body>
     <div class="wrapper">
-        <header class="header">
-            <div class="header-title">todo</div>
-            <textarea class="header-describe" placeholder="설명글"></textarea>
-        </header>
-        <nav>
-            입력, 검색라인
-        </nav>
-        <section>
-            컨텐츠 3칸 column
-            <div>todo</div>
-            <div>doing</div>
-            <div>done</div>
-        </section>
+      <header class="header">
+        <textarea class="header-title">todo</textarea>
+        <textarea class="header-describe" placeholder="설명글"></textarea>
+      </header>
+      <nav>
+        입력, 검색라인
+        <button>New</button>
+        <input placeholder="search"></nav>
+      </nav>
+      <section>
+        <div class="list-wrapper">
+          <div class="list-content">todo
+            <ul class="list-ul">
+              <li>a</li>
+              <li>a</li>
+              <li>a</li>
+              <li>a</li>
+            </ul>
+            <button class="btn-list-add">new</button>
+          </div>
+          <div class="list-content">doing
+            <ul class="list-ul">
+              <li>a</li>
+              <li>a</li>
+              <li>a</li>
+              <li>a</li>
+            </ul>
+            <button class="btn-list-add">new</button>
+          </div>
+          <div class="list-content">done
+            <ul class="list-ul">
+                <li>a</li>
+                <li>a</li>
+                <li>a</li>
+                <li>a</li>
+            </ul>
+            <button class="btn-list-add">new</button>
+          </div>
+        </div>
+      </section>
       <button id="btn-toggle">change</button>
     </div>
     <script type="module" src="./app.js"></script>
