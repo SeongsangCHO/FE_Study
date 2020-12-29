@@ -7,7 +7,7 @@ const DOM = {
   contentEl: document.querySelector("div.content"),
   navbarEl: document.querySelector("nav.nav-bar"),
   clockEl: document.querySelector("#clock"),
-  todoSectionEl: document.querySelector(".todo-container"),
+  // todoSectionEl: document.querySelector(".todo-container"),
 };
 /* theme status object */
 const status = {
