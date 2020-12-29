@@ -1,0 +1,38 @@
+/* clock font */
+@font-face {
+  font-family: "digital-clock-font";
+  src: url("put_the_location_to_your_font.ttf or .otf");
+}
+/* clock font */
+/* init */
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--default-white-background);
+}
+
+:root {
+  --default-nav-bar-background: #0275d8;
+  --default-white-background: #cccccc;
+  --dark-theme-background: #121212;
+  --time-short: 0.3s;
+  --time-long: 1s;
+  --left-side-bar-width: 120px;
+}
+
+.wrapper {
+  transition-duration: var(--time-short);
+  background-color: var(--default-white-background);
+  width: 100%;
+  height: 100%;
+}
+
+.dark {
+  /* 뒤에나오는 css가 우선순위가 높다.*/
+  transition-duration: var(--time-short);
+  background-color: var(--dark-theme-background);
+  color: yellow;
+}
