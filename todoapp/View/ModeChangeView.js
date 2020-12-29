@@ -5,6 +5,7 @@ const tag = "[ModeChangeView.js]";
 /* theme changing element object*/
 const DOM = {
     contentEl: document.querySelector('.wrapper'),
+    body: document.body,
   // todoSectionEl: document.querySelector(".todo-container"),
 };
 /* theme status object */

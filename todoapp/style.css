@@ -5,13 +5,24 @@
 }
 /* clock font */
 /* init */
-html,
+html{
+    width: 100%;
+    height: 100%;
+}
 body {
   width: 100%;
-  height: 100%;
-  margin: 0;
+  margin: 0px;
   padding: 0;
+  transition-duration: var(--time-short);
   background-color: var(--default-white-background);
+}
+textarea{
+    resize: none;
+    overflow: hidden;
+    display: block;
+}
+div {
+    box-sizing:border-box;
 }
 
 :root {
@@ -22,12 +33,18 @@ body {
   --time-long: 1s;
   --left-side-bar-width: 120px;
 }
-
+/*
+header
+*/
+.header-describe{
+    width: 100%;
+}
 .wrapper {
   transition-duration: var(--time-short);
   background-color: var(--default-white-background);
-  width: 100%;
+  max-width: 1024px;
   height: 100%;
+  padding: 30px 80px 30px 80px;
 }
 
 .dark {
