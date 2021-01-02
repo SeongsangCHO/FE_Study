@@ -2,9 +2,8 @@
 
 ---
 
-https://user-images.githubusercontent.com/55486644/103457586-f1371a80-4d43-11eb-9e1e-60968c61a20b.mov
 
-
+![화면 기록 2021-01-02 오후 9 44 44](https://user-images.githubusercontent.com/55486644/103457746-4d4e6e80-4d45-11eb-9653-5505f237dc7e.gif)
 
 ## 요구사항 분석
 

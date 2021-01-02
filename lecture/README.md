@@ -3,6 +3,9 @@
 ---
 
 
+![화면 기록 2021-01-02 오후 9 57 05](https://user-images.githubusercontent.com/55486644/103457788-a1595300-4d45-11eb-8a97-bb5fb95be710.gif)
+
+
 
 ## 요구사항 분석
 
