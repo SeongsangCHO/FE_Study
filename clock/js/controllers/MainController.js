@@ -12,7 +12,7 @@ const tag = "[MainController.js]";
 
 export default {
   init() {
-    this.selectedTab = "스톱워치";
+    this.selectedTab = "시계";
     // ResultView.setup(document.querySelector("div#timer"));
 
     ModeChangeView.setup(document.querySelector("#btn-toggle"));

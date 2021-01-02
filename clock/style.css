@@ -67,8 +67,11 @@ button {
 
 .logo-box {
   display: inline-block;
+  height: 75px;
 }
-
+#btn-toggle{
+  height: 75px;
+}
 .nav-menu {
   display: inline;
   float: right;
