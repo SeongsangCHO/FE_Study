@@ -1,17 +1,19 @@
 console.log("app is running!");
-const tag = '[App.js]';
 class App {
   $target = null;
   data = [];
+  tag = '[App.js]';
 
   constructor($target) {
-    console.log(tag,' constructor')
+    console.log(this.tag,' constructor')
     this.$target = $target;
 
     this.searchInput = new SearchInput({
       $target,
       onSearch: keyword => {
-        api.fetchCats(keyword).then(({ data }) => this.setState(data));
+        api.fetchCats(keyword).then(({ data }) => {
+          console.log(data);
+          return this.setState(data)});
       }
     });
 
@@ -40,7 +42,7 @@ class App {
   }
 
   setState(nextData) {
-    console.log(this);
+    console.log(this.tag, nextData);
     this.data = nextData;
     this.searchResult.setState(nextData);
   }

@@ -21,7 +21,7 @@ class SearchInput {
         onSearch(e.target.value);
       }
     });
-
+    //버튼 생성 후 이어붙일것, 버튼클릭에도 onSearch.
     console.log("SearchInput created.", this);
   }
   render() {}

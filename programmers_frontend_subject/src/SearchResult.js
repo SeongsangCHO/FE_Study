@@ -20,11 +20,12 @@ class SearchResult {
   }
 
   render() {
+    console.log(this.data)
     this.$searchResult.innerHTML = this.data
       .map(
         cat => `
           <div class="item">
-            <img src=${cat.url} alt=${cat.name} />
+            <img src=${cat.data.url} alt=${cat.data.name} />
           </div>
         `
       )

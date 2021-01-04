@@ -1,4 +1,6 @@
+
 class ImageInfo {
+  tag = '[ImageInfo.js]';
   $imageInfo = null;
   data = null;
   ESC_KEY = 27;
@@ -15,6 +17,8 @@ class ImageInfo {
 
   setState(nextData) {
     this.data = nextData;
+    console.log(this.tag, nextData);
+    
     this.render();
   }
 
@@ -37,7 +41,8 @@ class ImageInfo {
 
   render() {
     if (this.data.visible) {
-      const { name, url, temperament, origin } = this.data.image;
+      console.log(this.data.image)
+      const { name, url, temperament, origin } = this.data.image.data;
 
       this.$imageInfo.innerHTML = `
         <div class="content-wrapper">
