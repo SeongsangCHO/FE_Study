@@ -24,7 +24,12 @@ class ImageInfo {
     });
 
     window.addEventListener("keydown", (e) => {
-      if (e.keyCode == ESC_KEY) {
+      if (e.keyCode == this.ESC_KEY) {
+        this.$imageInfo.style.display = "none";
+      }
+    });
+    window.addEventListener("click", (e) => {
+      if (e.target == this.$imageInfo){
         this.$imageInfo.style.display = "none";
       }
     });
