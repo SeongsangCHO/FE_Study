@@ -45,6 +45,23 @@ body * {
   width: 100%;
 }
 
+@media screen and (max-width: 992px){
+  .SearchResult{
+  grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .SearchResult{
+  grid-template-columns: 1fr 1fr ;
+  }
+}
+
+@media screen and (max-width: 576px){
+  .SearchResult{
+  grid-template-columns: 1fr;
+  }
+}
 .SearchInput {
   width: 100%;
   font-size: 40px;
