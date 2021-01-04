@@ -1,10 +1,11 @@
 console.log("app is running!");
-
+const tag = '[App.js]';
 class App {
   $target = null;
   data = [];
 
   constructor($target) {
+    console.log(tag,' constructor')
     this.$target = $target;
 
     this.searchInput = new SearchInput({
@@ -32,6 +33,10 @@ class App {
         image: null
       }
     });
+
+    this.modeToggle = new ModeToggle({
+      $target
+    })
   }
 
   setState(nextData) {

@@ -11,6 +11,12 @@ html {
 
 body * {
   font-family: Goyang;
+  background-color: #fff;
+  color: #000;
+}
+body.dark-theme * {
+  background-color: #000;
+  color: #fff;
 }
 
 *,
@@ -101,11 +107,14 @@ body * {
   width: 100%;
 }
 
-/* dark mode 처리
+/* dark mode 처리 */
 @media (prefers-color-scheme: dark) {
-  body {
+  body *{
     background-color: #000;
     color: white;
   }
+  body.light-theme * {
+    background-color: #FFF;
+    color: #000;
+  }
 }
-*?
