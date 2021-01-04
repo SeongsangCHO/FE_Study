@@ -18,9 +18,17 @@ class ImageInfo {
     this.render();
   }
 
-  bindCloseEvent(){
-    this.$imageInfo.querySelector('.close').addEventListener('click', e=>{
+  bindCloseEvent() {
+    this.$imageInfo.querySelector(".close").addEventListener("click", (e) => {
       this.$imageInfo.style.display = "none";
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.keyCode == 27) {
+        this.$imageInfo.style.display = "none";
+      } else {
+        console.log("closeEvent");
+      }
     });
   }
 
@@ -40,7 +48,7 @@ class ImageInfo {
             <div>태생: ${origin}</div>
           </div>
         </div>`;
-        this.bindCloseEvent();
+      this.bindCloseEvent();
 
       this.$imageInfo.style.display = "block";
     } else {
