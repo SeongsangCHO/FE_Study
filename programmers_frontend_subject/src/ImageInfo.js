@@ -1,7 +1,7 @@
 class ImageInfo {
   $imageInfo = null;
   data = null;
-
+  ESC_KEY = 27;
   constructor({ $target, data }) {
     const $imageInfo = document.createElement("div");
     $imageInfo.className = "ImageInfo";
@@ -24,10 +24,8 @@ class ImageInfo {
     });
 
     window.addEventListener("keydown", (e) => {
-      if (e.keyCode == 27) {
+      if (e.keyCode == ESC_KEY) {
         this.$imageInfo.style.display = "none";
-      } else {
-        console.log("closeEvent");
       }
     });
   }

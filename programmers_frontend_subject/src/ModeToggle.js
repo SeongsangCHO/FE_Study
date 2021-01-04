@@ -1,7 +1,6 @@
 class ModeToggle {
   constructor({ $target }) {
     const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
-    console.log(prefersDarkScheme);
     const $modeToggle = document.createElement("input");
     this.$modeToggle = $modeToggle;
     this.$modeToggle.className = "ModeToggle";
