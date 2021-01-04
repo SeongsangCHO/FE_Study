@@ -61,6 +61,10 @@ body.dark-theme * {
   .SearchResult{
   grid-template-columns: 1fr 1fr ;
   }
+  .content-wrapper{
+    box-sizing: border-box;
+    width: 100%
+  }
 }
 
 @media screen and (max-width: 576px){
@@ -78,7 +82,7 @@ body.dark-theme * {
   position: fixed;
   left: 0;
   top: 0;
-  width: 100vw;
+  width: 100%; /* default = 100vw => 100% modal창 scroll바 넘어섬*/
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
 }
@@ -118,3 +122,4 @@ body.dark-theme * {
     color: #000;
   }
 }
+
