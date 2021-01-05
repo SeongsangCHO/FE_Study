@@ -2,51 +2,63 @@ console.log("app is running!");
 class App {
   $target = null;
   data = [];
-  tag = '[App.js]';
+  tag = "[App.js]";
 
   constructor($target) {
-    console.log(this.tag,' constructor')
+    console.log(this.tag, " constructor");
     this.$target = $target;
 
     this.searchInput = new SearchInput({
       $target,
-      onSearch: keyword => {
+      onSearch: async (keyword) => {
         this.loading.loadingSpinnerToggle();
-        api.fetchCats(keyword).then(({ data }) => {
-          return this.setState(data)});
-      }
+        this.data = await api.fetchCats(keyword);
+        //데이터가 없거나, 에러일 때.
+        console.log(this.data.isError);
+        
+        if(this.data.isError){
+          this.error.setState();
+        }
+        this.data.length == 0 ? console.log('error.setState()') : this.setState(this.data);
+        // api.fetchCats(keyword).then(({ data }) => {
+        //   return this.setState(data)});
+      },
     });
 
     this.loading = new Loading({
       $target,
     });
+    this.error = new Error({
+      $target,
+    })
 
     this.searchResult = new SearchResult({
       $target,
       initialData: this.data,
-      onClick: image => {
+      onClick: (image) => {
         this.imageInfo.setState({
           visible: true,
-          image
+          image,
         });
-      }
+      },
     });
 
     this.imageInfo = new ImageInfo({
       $target,
       data: {
         visible: false,
-        image: null
-      }
+        image: null,
+      },
     });
 
     this.modeToggle = new ModeToggle({
-      $target
-    })
+      $target,
+    });
   }
 
   setState(nextData) {
     this.loading.loadingSpinnerToggle();
+    console.log(nextData);
     this.data = nextData;
     this.searchResult.setState(nextData);
   }

@@ -10,7 +10,7 @@ async function request(url) {
       return data;
     } else {
       const errorData = await response.json();
-      return errorData;
+      throw errorData;
     }
   } catch (e) {
     throw {

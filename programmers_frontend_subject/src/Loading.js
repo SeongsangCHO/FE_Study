@@ -6,13 +6,11 @@ class Loading {
     this.loadingSpinner.classList.add("hide");
     $target.appendChild(this.loadingSpinner);
 
-    this.render();
   }
 
   loadingSpinnerToggle() {
     console.log("spinner is toggle");
     this.loadingSpinner.classList.toggle("hide");
   }
-  render() {
-  }
+
 }
