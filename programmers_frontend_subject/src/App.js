@@ -12,16 +12,9 @@ class App {
       $target,
       onSearch: async (keyword) => {
         this.loading.loadingSpinnerToggle();
-        this.data = await api.fetchCats(keyword);
-        //데이터가 없거나, 에러일 때.
-        console.log(this.data.isError);
-        
-        if(this.data.isError){
-          this.error.setState();
-        }
-        this.data.length == 0 ? console.log('error.setState()') : this.setState(this.data);
-        // api.fetchCats(keyword).then(({ data }) => {
-        //   return this.setState(data)});
+        api.fetchCats(keyword).then(({ data }) => {
+          return this.setState(data);
+        });
       },
     });
 
@@ -30,7 +23,7 @@ class App {
     });
     this.error = new Error({
       $target,
-    })
+    });
 
     this.searchResult = new SearchResult({
       $target,
@@ -58,8 +51,13 @@ class App {
 
   setState(nextData) {
     this.loading.loadingSpinnerToggle();
+    nextData = this.filterErrorData(nextData);
     console.log(nextData);
     this.data = nextData;
     this.searchResult.setState(nextData);
+  }
+
+  filterErrorData(nextData){
+    return nextData.filter(obj => obj.hasOwnProperty("message") == false);
   }
 }
