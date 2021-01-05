@@ -9,7 +9,7 @@ const modalBg = document.createElement("div");
 const modalWindow = document.createElement("div");
 
 modalBg.classList.add("modal-bg");
-
+modalWindow.classList.add("modal-window");
 document.body.querySelector("#App").appendChild(modalBg);
 app.querySelector(".modal-bg").style.display = "none";
 
@@ -21,6 +21,7 @@ function hide() {
 
 function show() {
   modalBg.style.display = "block";
+  modalBg.appendChild(modalWindow);
   modalWindow.style.display = "block";
 }
 
