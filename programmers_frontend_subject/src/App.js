@@ -11,10 +11,14 @@ class App {
     this.searchInput = new SearchInput({
       $target,
       onSearch: keyword => {
+        this.loading.loadingSpinnerToggle();
         api.fetchCats(keyword).then(({ data }) => {
-          console.log(data);
           return this.setState(data)});
       }
+    });
+
+    this.loading = new Loading({
+      $target,
     });
 
     this.searchResult = new SearchResult({
@@ -42,7 +46,7 @@ class App {
   }
 
   setState(nextData) {
-    console.log(this.tag, nextData);
+    this.loading.loadingSpinnerToggle();
     this.data = nextData;
     this.searchResult.setState(nextData);
   }

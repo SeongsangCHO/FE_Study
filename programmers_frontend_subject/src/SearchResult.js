@@ -21,15 +21,13 @@ class SearchResult {
 
   render() {
     this.$searchResult.innerHTML = this.data
-      .map(
-        cat => {
-          return `
+      .map((cat) => {
+        return `
           <div class="item">
             <img src=${cat.data?.url} alt=${cat.data?.name} />
           </div>
-        `
-      }
-      )
+        `;
+      })
       .join("");
 
     this.$searchResult.querySelectorAll(".item").forEach(($item, index) => {

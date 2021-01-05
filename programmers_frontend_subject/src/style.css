@@ -119,7 +119,9 @@ body.dark-theme * {
   opacity: 1;
   z-index: 9999;
 }
-
+.spinner.hide{
+  display: none;
+}
 .ImageInfo .content-wrapper img {
   width: 100%;
 }
