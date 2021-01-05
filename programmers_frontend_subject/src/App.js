@@ -57,7 +57,10 @@ class App {
     this.searchResult.setState(nextData);
   }
 
-  filterErrorData(nextData){
-    return nextData.filter(obj => obj.hasOwnProperty("message") == false);
+  filterErrorData(nextData) {
+    if (nextData.length > 0) {
+      return nextData.filter((obj) => obj.hasOwnProperty("message") == false);
+    }
+    return nextData;
   }
 }

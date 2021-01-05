@@ -8,7 +8,7 @@ class SearchResult {
     this.$searchResult.className = "SearchResult";
     $target.appendChild(this.$searchResult);
 
-    this.data = initialData;
+    this.data = null;
     this.onClick = onClick;
 
     this.render();
@@ -20,7 +20,9 @@ class SearchResult {
   }
 
   render() {
-    this.$searchResult.innerHTML = this.data
+    console.log('render', this.data);
+    if(!this.data) { return ;}
+    this.$searchResult.innerHTML = (this.data.length > 0 ) ? this.data
       .map((cat) => {
         return `
           <div class="item">
@@ -28,7 +30,7 @@ class SearchResult {
           </div>
         `;
       })
-      .join("");
+      .join("") : `<div> no search Data </div>`;
 
     this.$searchResult.querySelectorAll(".item").forEach(($item, index) => {
       $item.addEventListener("click", () => {
