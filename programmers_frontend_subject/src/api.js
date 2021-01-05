@@ -9,10 +9,14 @@ async function request(url) {
       const data = await response.json();
       return data;
     } else {
-      console.log("error");
+      const errorData = await response.json();
+      return errorData;
     }
   } catch (e) {
-    console.log(e);
+    throw {
+      message : e.message,
+      status : e.status,
+    }
   }
 }
 
@@ -22,17 +26,20 @@ const api = {
       const specifies = await request(
         `${API_ENDPOINT}/api/cats/search?q=${keyword}`
       );
-      const response = specifies.data.map(
+      const requests = specifies.data.map(
         async (specify) =>{
           return await request(`${API_ENDPOINT}/api/cats/${specify.id}`)}
       );
-      const result = await Promise.all(response);
-      console.log(result)
+      const result = await Promise.all(requests);
       return {
         data:result,
+        isError: false,
       };
     } catch (e) {
-      console.log(e);
+      return {
+        data: e,
+        isError:true
+      }
     }
   },
 };

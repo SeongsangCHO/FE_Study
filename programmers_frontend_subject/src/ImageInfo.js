@@ -1,6 +1,5 @@
-
 class ImageInfo {
-  tag = '[ImageInfo.js]';
+  tag = "[ImageInfo.js]";
   $imageInfo = null;
   data = null;
   ESC_KEY = 27;
@@ -18,30 +17,33 @@ class ImageInfo {
   setState(nextData) {
     this.data = nextData;
     console.log(this.tag, nextData);
-    
+
     this.render();
   }
-
+  hide() {
+    this.$imageInfo.style.display = "none";
+    this.$imageInfo.querySelector(".content-wrapper").classList.remove("open");
+    this.$imageInfo.classList.remove("open");
+  }
   bindCloseEvent() {
     this.$imageInfo.querySelector(".close").addEventListener("click", (e) => {
-      this.$imageInfo.style.display = "none";
+      this.hide();
     });
 
     window.addEventListener("keydown", (e) => {
       if (e.keyCode == this.ESC_KEY) {
-        this.$imageInfo.style.display = "none";
+        this.hide();
       }
     });
     window.addEventListener("click", (e) => {
-      if (e.target == this.$imageInfo){
-        this.$imageInfo.style.display = "none";
+      if (e.target == this.$imageInfo) {
+        this.hide();
       }
     });
   }
 
   render() {
     if (this.data.visible) {
-      console.log(this.data.image)
       const { name, url, temperament, origin } = this.data.image.data;
 
       this.$imageInfo.innerHTML = `
@@ -57,8 +59,9 @@ class ImageInfo {
           </div>
         </div>`;
       this.bindCloseEvent();
-
       this.$imageInfo.style.display = "block";
+      this.$imageInfo.querySelector(".content-wrapper").classList.add("open");
+      this.$imageInfo.classList.add("open");
     } else {
       this.$imageInfo.style.display = "none";
     }

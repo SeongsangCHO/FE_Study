@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fade in-out</title>
+</head>
+<style>
+  div{
+    display: inline-block;
+    border: 1px solid red;
+    box-sizing: border-box;
+  }
+  .wrapper{
+    width: 100px;
+    height: 100px;
+    background-color: coral;
+    opacity: 0;
+    transition: 1s all;
+  }
+  .content{
+    width: 100px;
+    height: 100px;
+    background-color: cyan;
+    opacity: 0;
+    transition: 1s;
+  }
+  .open{
+    opacity: 1;
+  }
+</style>
+<body>
+  <button class="fade-toggle">fade in</button>
+  <div class="wrapper">래퍼
+    <div class="content">컨텐츠</div>
+  </div>
+  <div>옆에 컨텐츠</div>
+  <script src="app.js"></script>
+</body>
+</html>

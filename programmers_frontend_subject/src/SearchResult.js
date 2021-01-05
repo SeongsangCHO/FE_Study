@@ -23,11 +23,13 @@ class SearchResult {
     console.log(this.data)
     this.$searchResult.innerHTML = this.data
       .map(
-        cat => `
+        cat => {
+          return `
           <div class="item">
-            <img src=${cat.data.url} alt=${cat.data.name} />
+            <img src=${cat.data?.url} alt=${cat.data?.name} />
           </div>
         `
+      }
       )
       .join("");
 
