@@ -15,24 +15,47 @@
         top: 0;
         height: 100vh;
         background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        transition: opacity .5s;
+        z-index: -9999;
       }
       .modal-window {
         position: absolute;
+        opacity: 0;
         width: 50%;
         height: 50%;
         left: 50%;
         top: 50%;
         background-color: #ffffff;
         transform: translate(-50%, -50%);
+        transition: opacity .5s;
       }
-      .unstaged{
-        top: -100px;
+      .modal-bg.unstaged {
+        top: -100%;
       }
-
+      .modal-bg.open {
+        opacity: 1;
+        z-index: 0;
+      }
+      .modal-window.open{
+        opacity: 1;
+      }
+      .testbox{
+        width: 100px;
+        height: 100px;
+        opacity: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        transition: opacity .5s;;
+      }
+      .test-open{
+        opacity: 1;
+      }
     </style>
   </head>
   <body>
+    <button class="testbtn">testbtn</button>
+    <div class="testbox"></div>
     <div id="App"></div>
-    <script src="modal.js"></script>
+    <script src="modal_fade.js"></script>
   </body>
 </html>

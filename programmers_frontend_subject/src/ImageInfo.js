@@ -8,36 +8,39 @@ class ImageInfo {
     $imageInfo.className = "ImageInfo";
     this.$imageInfo = $imageInfo;
     $target.appendChild($imageInfo);
-
     this.data = data;
-
     this.render();
   }
 
   setState(nextData) {
     this.data = nextData;
     console.log(this.tag, nextData);
-
     this.render();
   }
-  hide() {
-    this.$imageInfo.style.display = "none";
-    this.$imageInfo.querySelector(".content-wrapper").classList.remove("open");
-    this.$imageInfo.classList.remove("open");
+  open() {
+    this.$imageInfo.classList.add("open");
   }
-  bindCloseEvent() {
+  close() {
+    console.log('close');
+    this.$imageInfo.classList.remove("open");
+    this.$imageInfo.querySelector(".close").removeEventListener('click', this, false);
+    window.removeEventListener('keydown', this, false);
+    window.removeEventListener('click', this, false);
+  }
+  bindEvent() {
     this.$imageInfo.querySelector(".close").addEventListener("click", (e) => {
-      this.hide();
+      this.close();
     });
-
     window.addEventListener("keydown", (e) => {
+      console.log("1");
+
       if (e.keyCode == this.ESC_KEY) {
-        this.hide();
+        this.close();
       }
     });
     window.addEventListener("click", (e) => {
       if (e.target == this.$imageInfo) {
-        this.hide();
+        this.close();
       }
     });
   }
@@ -58,12 +61,12 @@ class ImageInfo {
             <div>태생: ${origin}</div>
           </div>
         </div>`;
-      this.bindCloseEvent();
-      this.$imageInfo.style.display = "block";
-      this.$imageInfo.querySelector(".content-wrapper").classList.add("open");
-      this.$imageInfo.classList.add("open");
+      console.log('bindEvent');
+      this.bindEvent();
+      this.open();
     } else {
-      this.$imageInfo.style.display = "none";
+      //클릭했는데 visible이 false인경우?
+      console.log("else");
     }
   }
 }
