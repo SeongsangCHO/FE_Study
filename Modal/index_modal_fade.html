@@ -16,7 +16,7 @@
         height: 100vh;
         background-color: rgba(0, 0, 0, 0.5);
         opacity: 0;
-        transition: opacity .5s;
+        transition:  1s;
         z-index: -9999;
       }
       .modal-window {
@@ -28,34 +28,51 @@
         top: 50%;
         background-color: #ffffff;
         transform: translate(-50%, -50%);
-        transition: opacity .5s;
-      }
-      .modal-bg.unstaged {
-        top: -100%;
+        transition: 1s;
+        z-index: -9998;
       }
       .modal-bg.open {
         opacity: 1;
-        z-index: 0;
+        z-index: 9998;
       }
-      .modal-window.open{
+      .modal-window.open {
         opacity: 1;
+        z-index: 9999;
       }
-      .testbox{
+      .testbox {
         width: 100px;
         height: 100px;
         opacity: 0;
         background-color: rgba(0, 0, 0, 0.5);
-        transition: opacity .5s;;
+        transition: 3s;
       }
-      .test-open{
+      .test-open {
         opacity: 1;
+      }
+      .box {
+        width: 100%;
+        height: 500px;
+        background-color: royalblue;
+      }
+      .box-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 200px;
+        height: 200px;
+        background-color: salmon;
       }
     </style>
   </head>
   <body>
     <button class="testbtn">testbtn</button>
     <div class="testbox"></div>
-    <div id="App"></div>
+    <div id="App">
+      <div class="box">
+        <button class="box-content">Click me</button>
+      </div>
+    </div>
     <script src="modal_fade.js"></script>
   </body>
 </html>

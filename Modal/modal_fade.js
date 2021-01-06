@@ -1,60 +1,59 @@
-const app = document.body.querySelector("#App");
+class Modal {
+  $target = null;
+  constructor($target) {
+    this.$target = $target;
 
-const modalBtn = document.createElement("button");
-modalBtn.innerText = "modal-open";
-modalBtn.classList.add("btn-modal");
-document.body.querySelector("#App").appendChild(modalBtn);
+    console.log($target);
+    this.$modalBtn = document.createElement("button");
+    this.$modalBg = document.createElement("div");
+    this.$modalWindow = document.createElement("div");
+    this.$modalClose = document.createElement("div");
+    this.$contentBtn = document.querySelector(".box-content");
+    this.$modalBtn.innerText = "Modal Open";
+    this.$modalBtn.className = "btn-modal-open";
+    this.$modalBg.className = "modal-bg";
+    this.$modalWindow.className = "modal-window";
+    this.$modalClose.innerText = "X";
+    this.render();
+  }
+  render() {
+    this.$target.appendChild(this.$modalBtn);
+    this.$target.appendChild(this.$modalBg);
+    this.$modalBg.appendChild(this.$modalWindow);
+    this.$modalWindow.appendChild(this.$modalClose);
+    this.bindEvent();
+  }
+  toggling(e) {
+    console.log("toggling", e.target);
+    this.$modalBg.classList.toggle("open");
+    this.$modalWindow.classList.toggle("open");
+  }
+  bindEvent() {
+    this.$contentBtn.addEventListener("click", (e) => {
+      console.log("click content button");
+    });
+    this.$modalBtn.addEventListener("click", (e) => {
+      if (e.target == this.$modalBtn) this.toggling(e);
+    });
 
-const modalBg = document.createElement("div");
-const modalWindow = document.createElement("div");
+    window.addEventListener("click", (e) => {
+      if (
+        e.target == this.$modalBg &&
+        this.$modalBg.classList.contains("open")
+      ) {
+        this.toggling(e);
+      }
+    });
 
-modalBg.classList.add("modal-bg");
-modalBg.appendChild(modalWindow);
-
-modalWindow.classList.add("modal-window");
-document.body.querySelector("#App").appendChild(modalBg);
-
-function toggling(e) {
-  console.log('toggling', e.target);
-  modalBg.classList.toggle("open");
-  modalWindow.classList.toggle("open");
+    window.addEventListener("keydown", (e) => {
+      if (e.keyCode == 27 && this.$modalBg.classList.contains("open")) {
+        this.toggling(e);
+      }
+    });
+    this.$modalClose.addEventListener("click", (e) => {
+      this.toggling(e);
+    });
+  }
 }
 
-
-modalBtn.addEventListener("click", (e) => {
-  if(e.target == modalBtn)
-    toggling(e);
-  console.log("modal Open");
-});
-
-window.addEventListener("click", (e) => {
-  if (e.target == modalBg && e.target != modalBtn) {
-    toggling(e);
-  }
-});
-
-window.addEventListener("keydown", (e) => {
-  if (e.keyCode == 27 && !modalBg.classList.contains("unstaged")) {
-    toggling(e);
-  }
-});
-modalBg.addEventListener("transitionend", function (e) {
-  document.body.removeEventListener("transitionend", arguments.callee);
-});
-
-
-const close = document.createElement('div');
-close.innerText = 'X';
-modalWindow.appendChild(close);
-
-close.addEventListener('click', e => {
-  console.log('close',e.target);
-  
-});
-
-const testBtn = document.body.querySelector('.testbtn');
-const testBox = document.body.querySelector('.testbox');
-
-testBtn.addEventListener('click', e=>{
-  testBox.classList.toggle('test-open');
-})
+new Modal(document.querySelector("#App"));
