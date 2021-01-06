@@ -7,19 +7,35 @@ class Lazyload {
     this.$imageWrapper = document.createElement("div");
     this.$imageWrapper.className = "wrapper";
     this.data = [];
-    // this.imageAPI();
+    this.imageAPI();
     // this.bindEvent();
   }
 
   lazyLoadHandler() {
-      let lazyImages = Array.prototype.slice.call(document.body.querySelectorAll('.image'));
+    let lazyImages = Array.prototype.slice.call(
+      document.body.querySelectorAll(".image")
+    );
 
-      const lazyLoad = () =>{
+    const lazyLoad = () => {
+      console.log("load");
 
-      }
-      document.addEventListener("scroll", lazyLoad);
-      window.addEventListener("resize", lazyLoad);
-      window.addEventListener("orientationchange", lazyLoad);
+      lazyImages.forEach((image, index) => {
+        let imageTop = image.getBoundingClientRect().top;
+        let windowHeight = window.innerHeight;
+        if (
+          imageTop <= windowHeight &&
+          image.getAttribute("data-src")
+        ) {
+          const src = image.dataset.src; // img 태그의 data-lazy에 저장해둔 이미지 경로를 붙여준다.
+          image.setAttribute("src", src);
+          image.removeAttribute("data-src");
+        }
+      });
+    };
+    lazyLoad();
+    document.addEventListener("scroll", lazyLoad);
+    window.addEventListener("resize", lazyLoad);
+    window.addEventListener("orientationchange", lazyLoad);
   }
   async imageAPI() {
     const response = await fetch(this.API_URL + "/post", {
@@ -31,11 +47,11 @@ class Lazyload {
   }
   render(response) {
     this.$target.appendChild(this.$imageWrapper);
-    this.$target.innerHTML = response.map((data) => {
-      return `
-      <img class="image" src=${data.image}></img>
-      <img class="image" src=${data.image}></img>`;
-    });
+    this.$target.innerHTML = response
+      .map((data) => {
+        return `<img class="image" data-src=${data.image}></img>`;
+      })
+      .join("");
     this.data = document.querySelectorAll(".image");
   }
 }

@@ -6,17 +6,26 @@
     <title>lazy load</title>
     <style>
       body {
-        max-width: 1200px;
         margin: 0;
         padding: 0;
+      }
+      #App {
+        max-width: 1200px;
+        margin: 10px;
       }
       .wrapper {
         width: 100%;
         height: 100%;
       }
       .image {
-        width: 350px;
-        height: 350px;
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+        transition: opacity 0.3s;
+      }
+
+      .img[data-src] {
+        opacity: 0;
       }
     </style>
   </head>
