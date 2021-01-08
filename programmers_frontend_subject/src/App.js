@@ -8,16 +8,20 @@ class App {
     console.log(this.tag, " constructor");
     this.$target = $target;
 
+
     this.searchInput = new SearchInput({
       $target,
       onSearch: async (keyword) => {
         this.loading.loadingSpinnerToggle();
+        this.searchHistory.addSearchHistory(keyword);
         api.fetchCats(keyword).then(({ data }) => {
           return this.setState(data);
         });
       },
     });
-
+    this.searchHistory = new SearchHistory({
+      $target
+    })
     this.loading = new Loading({
       $target,
     });
