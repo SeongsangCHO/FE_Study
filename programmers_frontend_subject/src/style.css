@@ -126,6 +126,10 @@ body.dark-theme * {
   width: 100%;
 }
 
+.history-list .history-data{
+  list-style: none;
+}
+
 /* dark mode 처리 */
 @media (prefers-color-scheme: dark) {
   body *{

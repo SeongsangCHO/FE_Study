@@ -1,7 +1,5 @@
 class SearchHistory {
-  historyData = {
-
-  };
+  historyData = {};
 
   constructor({ $target }) {
     // localStorage.clear()
@@ -12,7 +10,7 @@ class SearchHistory {
     this.$historyList.className = "history-list";
     this.searchHistoryData = this.getLocalSearchHistory();
     console.log(this.searchHistoryData);
-    
+
     this.render();
   }
   getLocalSearchHistory() {
@@ -24,6 +22,14 @@ class SearchHistory {
   render() {
     this.$target.appendChild(this.$historyWrapper);
     this.$historyWrapper.appendChild(this.$historyList);
+    if (this.searchHistoryData) {
+      this.$historyList.innerHTML = this.searchHistoryData
+        .map((data) => {
+          return `<li class="history-data">${data.keyword}
+      <button class="btn-history-remove">X</button></li>`;
+        })
+        .join("");
+    }
   }
   addSearchHistory(keyword = "") {
     let dateObj = new Date();
@@ -31,21 +37,30 @@ class SearchHistory {
 
     let month = dateObj.getMonth() + 1;
     let day = dateObj.getDate();
-    
+
     //현재 일 최근검색어에 추가
     keyword = keyword.trim();
-    
+
     if (!keyword) return;
-    if(this.searchHistoryData.some((item) => item.keyword === keyword)){
+    if (this.searchHistoryData.some((item) => item.keyword === keyword)) {
       this.remove(keyword);
     }
     this.historyData.keyword = keyword;
     this.historyData.date = year + "/" + month + "/" + day;
-    
+
     this.searchHistoryData.unshift(this.historyData);
-    localStorage.setItem("SearchHistoryData",JSON.stringify(this.searchHistoryData));
+    
+    if(this.searchHistoryData.length > 5){
+      this.searchHistoryData.pop();
+    }
+    localStorage.setItem(
+      "SearchHistoryData",
+      JSON.stringify(this.searchHistoryData)
+    );
   }
-  remove(keyword){
-    this.searchHistoryData = this.searchHistoryData.filter((item) => item.keyword !== keyword)
+  remove(keyword) {
+    this.searchHistoryData = this.searchHistoryData.filter(
+      (item) => item.keyword !== keyword
+    );
   }
 }
