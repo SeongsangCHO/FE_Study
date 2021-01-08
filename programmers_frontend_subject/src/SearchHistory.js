@@ -36,11 +36,16 @@ class SearchHistory {
     keyword = keyword.trim();
     
     if (!keyword) return;
-
+    if(this.searchHistoryData.some((item) => item.keyword === keyword)){
+      this.remove(keyword);
+    }
     this.historyData.keyword = keyword;
     this.historyData.date = year + "/" + month + "/" + day;
     
-    this.searchHistoryData.push(this.historyData);
+    this.searchHistoryData.unshift(this.historyData);
     localStorage.setItem("SearchHistoryData",JSON.stringify(this.searchHistoryData));
+  }
+  remove(keyword){
+    this.searchHistoryData = this.searchHistoryData.filter((item) => item.keyword !== keyword)
   }
 }
