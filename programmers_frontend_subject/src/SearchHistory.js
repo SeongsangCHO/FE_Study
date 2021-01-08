@@ -9,8 +9,8 @@ class SearchHistory {
     this.$historyList = document.createElement("ul");
     this.$historyList.className = "history-list";
     this.searchHistoryData = this.getLocalSearchHistory();
-    console.log(this.searchHistoryData);
-
+    this.$target.appendChild(this.$historyWrapper);
+    this.$historyWrapper.appendChild(this.$historyList);
     this.render();
   }
   getLocalSearchHistory() {
@@ -20,8 +20,6 @@ class SearchHistory {
     return JSON.parse(localStorage.getItem("SearchHistoryData"));
   }
   render() {
-    this.$target.appendChild(this.$historyWrapper);
-    this.$historyWrapper.appendChild(this.$historyList);
     if (this.searchHistoryData) {
       this.$historyList.innerHTML = this.searchHistoryData
         .map((data) => {
@@ -32,31 +30,35 @@ class SearchHistory {
     }
   }
   addSearchHistory(keyword = "") {
-    let dateObj = new Date();
-    let year = dateObj.getFullYear();
-
-    let month = dateObj.getMonth() + 1;
-    let day = dateObj.getDate();
-
-    //현재 일 최근검색어에 추가
+    this.searchHistoryData = this.getLocalSearchHistory();
+    if (!keyword) return;
     keyword = keyword.trim();
 
-    if (!keyword) return;
+    //현재 일 최근검색어에 추가
+
     if (this.searchHistoryData.some((item) => item.keyword === keyword)) {
       this.remove(keyword);
     }
-    this.historyData.keyword = keyword;
-    this.historyData.date = year + "/" + month + "/" + day;
+    this.setData(keyword);
 
     this.searchHistoryData.unshift(this.historyData);
-    
-    if(this.searchHistoryData.length > 5){
+
+    if (this.searchHistoryData.length > 5) {
       this.searchHistoryData.pop();
     }
+    this.render();
     localStorage.setItem(
       "SearchHistoryData",
       JSON.stringify(this.searchHistoryData)
     );
+  }
+  setData(keyword) {
+    let dateObj = new Date();
+    let year = dateObj.getFullYear();
+    let month = dateObj.getMonth() + 1;
+    let day = dateObj.getDate();
+    this.historyData.keyword = keyword;
+    this.historyData.date = year + "/" + month + "/" + day;
   }
   remove(keyword) {
     this.searchHistoryData = this.searchHistoryData.filter(
