@@ -4,6 +4,11 @@ class SearchHistory {
   constructor({ $target }) {
     // localStorage.clear()
     this.$target = $target;
+    this.initElement();
+    this.render();
+    this.bindClickEvent();
+  }
+  initElement() {
     this.$historyWrapper = document.createElement("div");
     this.$historyWrapper.className = "history-wrapper";
     this.$historyList = document.createElement("ul");
@@ -11,7 +16,13 @@ class SearchHistory {
     this.searchHistoryData = this.getLocalSearchHistory();
     this.$target.appendChild(this.$historyWrapper);
     this.$historyWrapper.appendChild(this.$historyList);
-    this.render();
+  }
+  bindClickEvent() {
+    this.$historyList.addEventListener("click", (e) => {
+      e.stopPropagation();
+      console.log(e.target.getAttribute("data-keyword"));
+      
+    });
   }
   getLocalSearchHistory() {
     if (!localStorage.getItem("SearchHistoryData")) {
@@ -19,11 +30,12 @@ class SearchHistory {
     }
     return JSON.parse(localStorage.getItem("SearchHistoryData"));
   }
+
   render() {
     if (this.searchHistoryData) {
       this.$historyList.innerHTML = this.searchHistoryData
         .map((data) => {
-          return `<li class="history-data">${data.keyword}
+          return `<li data-keyword=${data.keyword} class="history-data">${data.keyword}
       <button class="btn-history-remove">X</button></li>`;
         })
         .join("");

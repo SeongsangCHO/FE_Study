@@ -51,25 +51,25 @@ body.dark-theme * {
   width: 100%;
 }
 
-@media screen and (max-width: 992px){
-  .SearchResult{
-  grid-template-columns: 1fr 1fr 1fr;
+@media screen and (max-width: 992px) {
+  .SearchResult {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
-@media screen and (max-width: 768px){
-  .SearchResult{
-  grid-template-columns: 1fr 1fr ;
+@media screen and (max-width: 768px) {
+  .SearchResult {
+    grid-template-columns: 1fr 1fr;
   }
-  .content-wrapper{
+  .content-wrapper {
     box-sizing: border-box;
-    width: 100%
+    width: 100%;
   }
 }
 
-@media screen and (max-width: 576px){
-  .SearchResult{
-  grid-template-columns: 1fr;
+@media screen and (max-width: 576px) {
+  .SearchResult {
+    grid-template-columns: 1fr;
   }
 }
 .SearchInput {
@@ -89,8 +89,6 @@ body.dark-theme * {
   opacity: 0;
   z-index: -9999;
 }
-
-
 
 .ImageInfo .title {
   display: flex;
@@ -112,33 +110,33 @@ body.dark-theme * {
   border-radius: 5px;
   transition: 1s;
   z-index: -9998;
-
 }
 
-.ImageInfo.open{
+.ImageInfo.open {
   opacity: 1;
   z-index: 9999;
 }
-.spinner.hide{
+.spinner.hide {
   display: none;
 }
 .ImageInfo .content-wrapper img {
   width: 100%;
 }
 
-.history-list .history-data{
+.history-list .history-data {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 /* dark mode 처리 */
 @media (prefers-color-scheme: dark) {
-  body *{
+  body * {
     background-color: #000;
     color: white;
   }
   body.light-theme * {
-    background-color: #FFF;
+    background-color: #fff;
     color: #000;
   }
 }
-

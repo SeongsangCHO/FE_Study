@@ -20,7 +20,7 @@ class App {
       },
     });
     this.searchHistory = new SearchHistory({
-      $target
+      $target,
     })
     this.loading = new Loading({
       $target,
@@ -56,7 +56,6 @@ class App {
   setState(nextData) {
     this.loading.loadingSpinnerToggle();
     nextData = this.filterErrorData(nextData);
-    console.log(nextData);
     this.data = nextData;
     this.searchResult.setState(nextData);
   }
