@@ -21,6 +21,7 @@ class App {
     });
     this.searchHistory = new SearchHistory({
       $target,
+      onSearch : this.searchInput.onSearch,
     })
     this.loading = new Loading({
       $target,

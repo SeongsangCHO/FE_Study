@@ -1,9 +1,10 @@
 class SearchHistory {
   historyData = {};
 
-  constructor({ $target }) {
+  constructor({ $target, onSearch }) {
     // localStorage.clear()
     this.$target = $target;
+    this.onSearch = onSearch;
     this.initElement();
     this.render();
     this.bindClickEvent();
@@ -20,7 +21,7 @@ class SearchHistory {
   bindClickEvent() {
     this.$historyList.addEventListener("click", (e) => {
       e.stopPropagation();
-      console.log(e.target.getAttribute("data-keyword"));
+      this.onSearch(e.target.getAttribute("data-keyword"));
       
     });
   }
