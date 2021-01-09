@@ -9,20 +9,20 @@ class App {
     this.$target = $target;
 
 
+
     this.searchInput = new SearchInput({
       $target,
       onSearch: async (keyword) => {
         this.loading.loadingSpinnerToggle();
         this.searchHistory.addSearchHistory(keyword);
+        this.sessionStorage.setItem(keyword);
+        // localStorage.setItem("prevSearchKeyword",keyword);
         api.fetchCats(keyword).then(({ data }) => {
           return this.setState(data);
         });
       },
     });
-    this.searchHistory = new SearchHistory({
-      $target,
-      onSearch : this.searchInput.onSearch,
-    })
+
     this.loading = new Loading({
       $target,
     });
@@ -33,6 +33,7 @@ class App {
     this.searchResult = new SearchResult({
       $target,
       initialData: this.data,
+
       onClick: (image) => {
         this.imageInfo.setState({
           visible: true,
@@ -52,8 +53,17 @@ class App {
     this.modeToggle = new ModeToggle({
       $target,
     });
-  }
+    this.searchHistory = new SearchHistory({
+      $target,
+      onSearch: this.searchInput.onSearch,
+    });
+    this.sessionStorage = new SessionStorage({
+      setState: this.searchResult.setState,
+      searchResultObj : this.searchResult,
+    });
 
+
+  }
   setState(nextData) {
     this.loading.loadingSpinnerToggle();
     nextData = this.filterErrorData(nextData);

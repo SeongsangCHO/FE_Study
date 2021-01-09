@@ -1,10 +1,11 @@
 class SearchHistory {
   historyData = {};
 
-  constructor({ $target, onSearch }) {
+  constructor({ $target, onSearch, prevSearchKeyword }) {
     // localStorage.clear()
     this.$target = $target;
     this.onSearch = onSearch;
+    this.prevSearchKeyword = prevSearchKeyword;
     this.initElement();
     this.render();
     this.bindClickEvent();
@@ -72,6 +73,7 @@ class SearchHistory {
     let day = dateObj.getDate();
     this.historyData.keyword = keyword;
     this.historyData.date = year + "/" + month + "/" + day;
+    localStorage.setItem("prevSearchKeyword", keyword)
   }
   remove(keyword) {
     this.searchHistoryData = this.searchHistoryData.filter(
