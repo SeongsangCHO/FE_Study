@@ -1,3 +1,4 @@
+
 class Lazyload {
   API_URL = "https://dummyapi.io/data/api";
   APP_KEY = "5ff574fb2b98d0966946eb3a";
@@ -10,7 +11,7 @@ class Lazyload {
     this.imageAPI();
     // this.bindEvent();
   }
-
+  
   lazyLoadHandler() {
     let lazyImages = Array.prototype.slice.call(
       document.body.querySelectorAll(".image")

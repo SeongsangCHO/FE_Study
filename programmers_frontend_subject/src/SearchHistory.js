@@ -48,7 +48,7 @@ class SearchHistory {
   }
   addSearchHistory(keyword = "") {
     this.searchHistoryData = this.getLocalSearchHistory();
-    if (!keyword) return;
+    if (keyword === "" || keyword == null) return;
     keyword = keyword.trim();
 
     //현재 일 최근검색어에 추가

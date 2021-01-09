@@ -21,7 +21,8 @@ class SearchInput {
       }
     });
     this.$searchInput.addEventListener("keyup", e => {
-      if (e.keyCode === 13) {
+      e.target.value = e.target.value.trim();
+      if (e.keyCode === 13 && e.target.value != "") {
         this.onSearch(e.target.value);
       }
     });
