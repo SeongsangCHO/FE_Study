@@ -72,12 +72,21 @@ body.dark-theme * {
     grid-template-columns: 1fr;
   }
 }
-.SearchInput {
-  width: 100%;
+.search-input-wrapper{
+  display: flex;
+}
+.search-input-wrapper .SearchInput {
+  flex: 4;
   font-size: 40px;
   padding: 10px 15px;
-}
+  border-radius: 15px;
 
+}
+.search-input-wrapper .btn-random-request{
+  flex: 1;
+  border-radius: 15px;
+  background-color: cornflowerblue;
+}
 .ImageInfo {
   position: fixed;
   left: 0;

@@ -3,27 +3,42 @@ const TEMPLATE = '<input type="text">';
 class SearchInput {
   constructor({ $target, onSearch }) {
     const $searchInput = document.createElement("input");
+    this.$target = $target;
     this.onSearch = onSearch;
     this.$searchInput = $searchInput;
-    this.$searchInput.placeholder = "고양이를 검색해보세요.";
-    $searchInput.className = "SearchInput";
+    
+    this.initElement();
+    this.render();
+    this.bindEvent();
 
-    $searchInput.addEventListener('click', e =>{
+  }
+  bindEvent(){
+    this.$searchInput.addEventListener('click', e =>{
       //다시 클릭했을 때 확인해야하므로, focus X
       if (e.target.value.length != 0){
         e.target.value = '';
       }
     });
-    $target.appendChild($searchInput);
-    $searchInput.focus();
-
-    $searchInput.addEventListener("keyup", e => {
+    this.$searchInput.addEventListener("keyup", e => {
       if (e.keyCode === 13) {
-        onSearch(e.target.value);
+        this.onSearch(e.target.value);
       }
     });
-    //버튼 생성 후 이어붙일것, 버튼클릭에도 onSearch.
-    console.log("SearchInput created.", this);
   }
-  render() {}
+
+  initElement(){
+    this.$inputWrapper = document.createElement("div");
+    this.$inputWrapper.className = "search-input-wrapper";
+    this.$randomRequestBtn = document.createElement("button");
+    this.$randomRequestBtn.className = "btn-random-request";
+    this.$randomRequestBtn.innerText = "랜덤 야옹이 검색";
+    this.$searchInput.placeholder = "고양이를 검색해보세요.";
+    this.$searchInput.className = "SearchInput";
+  }
+  render() {
+    this.$target.appendChild(this.$inputWrapper);
+    this.$inputWrapper.appendChild(this.$searchInput);
+    this.$inputWrapper.appendChild(this.$randomRequestBtn);
+    this.$searchInput.focus();
+  }
 }
