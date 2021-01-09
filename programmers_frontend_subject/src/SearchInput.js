@@ -1,10 +1,11 @@
 const TEMPLATE = '<input type="text">';
 
 class SearchInput {
-  constructor({ $target, onSearch }) {
+  constructor({ $target, onSearch,onSearchRandom }) {
     const $searchInput = document.createElement("input");
     this.$target = $target;
     this.onSearch = onSearch;
+    this.onSearchRandom = onSearchRandom;
     this.$searchInput = $searchInput;
     
     this.initElement();
@@ -24,6 +25,10 @@ class SearchInput {
         this.onSearch(e.target.value);
       }
     });
+    this.$randomRequestBtn.addEventListener("click", e=>{
+      this.onSearchRandom();
+      
+    })
   }
 
   initElement(){

@@ -22,7 +22,10 @@ class SearchHistory {
   bindClickEvent() {
     this.$historyList.addEventListener("click", (e) => {
       e.stopPropagation();
-      this.onSearch(e.target.getAttribute("data-keyword"));
+      let clickedKeyword = e.target.getAttribute("data-keyword");
+      this.$target.querySelector('.SearchInput').value = clickedKeyword;
+      
+      this.onSearch(clickedKeyword);
       
     });
   }

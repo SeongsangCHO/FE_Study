@@ -14,32 +14,53 @@ async function request(url) {
     }
   } catch (e) {
     throw {
-      message : e.message,
-      status : e.status,
-    }
+      message: e.message,
+      status: e.status,
+    };
   }
 }
 
 const api = {
   fetchCats: async (keyword) => {
     try {
+      console.log('fetchCats');
+      
       const specifies = await request(
         `${API_ENDPOINT}/api/cats/search?q=${keyword}`
       );
-      const requests = specifies.data.map(
-        async (specify) =>{
-          return await request(`${API_ENDPOINT}/api/cats/${specify.id}`)}
-      );
+      const requests = specifies.data.map(async (specify) => {
+        return await request(`${API_ENDPOINT}/api/cats/${specify.id}`);
+      });
       const result = await Promise.all(requests);
       return {
-        data:result,
+        data: result,
         isError: false,
       };
     } catch (e) {
       return {
         data: e,
-        isError:true
+        isError: true,
+      };
+    }
+  },
+  fetchRandomCats: async () => {
+    try {
+      const specifies = await request(`${API_ENDPOINT}/api/cats/random50`);
+      const requests = specifies.data.map(async(specify) =>{
+        console.log(specify);
+        return await request(`${API_ENDPOINT}/api/cats/${specify.id}`);
+      });
+      const result = await Promise.all(requests);
+      return{
+        data: result,
+        isError:false,
       }
+      
+    } catch (e) {
+      return {
+        data: e,
+        isError: true,
+      };
     }
   },
 };

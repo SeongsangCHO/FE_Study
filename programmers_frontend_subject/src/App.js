@@ -21,6 +21,12 @@ class App {
           return this.setState(data);
         });
       },
+      onSearchRandom: async()=>{
+        this.loading.loadingSpinnerToggle();
+        api.fetchRandomCats().then(({ data }) => {
+          return this.setState(data);
+        });
+      }
     });
 
     this.loading = new Loading({
@@ -65,6 +71,8 @@ class App {
 
   }
   setState(nextData) {
+    console.log(nextData);
+    
     this.loading.loadingSpinnerToggle();
     nextData = this.filterErrorData(nextData);
     this.data = nextData;
