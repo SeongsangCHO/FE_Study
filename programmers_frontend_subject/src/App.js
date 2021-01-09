@@ -29,7 +29,10 @@ class App {
     this.error = new Error({
       $target,
     });
-
+    this.searchHistory = new SearchHistory({
+      $target,
+      onSearch: this.searchInput.onSearch,
+    });
     this.searchResult = new SearchResult({
       $target,
       initialData: this.data,
@@ -53,10 +56,7 @@ class App {
     this.modeToggle = new ModeToggle({
       $target,
     });
-    this.searchHistory = new SearchHistory({
-      $target,
-      onSearch: this.searchInput.onSearch,
-    });
+
     this.sessionStorage = new SessionStorage({
       setState: this.searchResult.setState,
       searchResultObj : this.searchResult,

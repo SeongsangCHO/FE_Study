@@ -32,7 +32,6 @@ class SearchResult {
   }
 
   render() {
-    console.log('render', this.data);
     if(!this.data) { return ;}
     this.$searchResult.innerHTML = (this.data.length > 0 ) ? this.data
       .map((cat) => {
