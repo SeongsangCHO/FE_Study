@@ -59,7 +59,7 @@ body * {
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 0;
-  transition: 1s;
+  transition: 1s opacity;
 }
 
 .ImageInfo .title {

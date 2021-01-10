@@ -9,7 +9,6 @@ class ImageInfo {
     $target.appendChild($imageInfo);
 
     this.data = data;
-
     this.render();
   }
 
@@ -35,9 +34,11 @@ class ImageInfo {
           </div>
         </div>`;
       this.$imageInfo.style.display = "block";
-      setTimeout(() =>  {
+      setTimeout(() => {
         this.$imageInfo.classList.add("modal-open");
-      },10)
+      }, 10);
+      this.bindCloseEvent();
+
       this.scrollHidden();
     } else {
       //close할 때 scroll-hidden 제거
@@ -46,5 +47,21 @@ class ImageInfo {
   }
   scrollHidden() {
     document.body.classList.add("scroll-hidden");
+  }
+  hide(e) {
+    if (
+      e.target === this.$imageInfo ||
+      e.target === this.$imageInfo.querySelector(".close")
+    ) {
+      document.body.classList.remove("scroll-hidden");
+      setTimeout(() => {
+        this.$imageInfo.style.display = "none";
+      }, 1000);
+      this.$imageInfo.classList.remove("modal-open");
+      this.$imageInfo.removeEventListener("click", this.hide);
+    }
+  }
+  bindCloseEvent() {
+    this.$imageInfo.addEventListener("click", this.hide.bind(this));
   }
 }
