@@ -4,10 +4,8 @@ class App {
   $target = null;
   data = [];
 
-
   constructor($target) {
     this.$target = $target;
-
     this.darkMode = new DarkModeToggle({
       $target,
     })
@@ -37,10 +35,20 @@ class App {
         image: null
       }
     });
-  }
+    this.setSessionState();
 
+  }
+  setSessionState(){
+    if(!sessionStorage.getItem("prevData")){
+      return ;
+    }
+    else {
+      this.setState(JSON.parse(sessionStorage.getItem("prevData")));
+    }
+  }
   setState(nextData) {
     this.data = nextData;
+    sessionStorage.setItem("prevData", JSON.stringify(nextData));
     nextData?.length > 0 ? this.searchResult.setState(nextData) : this.searchResult.noSearchData();
   }
 }
