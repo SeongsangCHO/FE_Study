@@ -14,7 +14,9 @@ class SearchResult {
 
     this.render();
   }
-
+  isLoadding(){
+    this.$searchResult.innerHTML = "<h1> Loading </h1>";
+  }
   setState(nextData) {
     this.data = nextData;
     this.render();

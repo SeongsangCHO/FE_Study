@@ -61,7 +61,15 @@ body * {
   opacity: 0;
   transition: 1s opacity;
 }
-
+.modal-loading{
+  display:inline;
+  font-size: 50px;
+  position: absolute;
+  left:50%;
+  top:50%;
+  text-align: center;
+  opacity: 0.5;
+}
 .ImageInfo .title {
   display: flex;
   justify-content: space-between;
@@ -95,6 +103,7 @@ body.modal-open{
   overflow: hidden;
 }
 /* 다크모드 */
+
 
 @media (prefers-color-scheme: dark) {
   body {

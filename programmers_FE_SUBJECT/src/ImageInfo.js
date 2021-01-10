@@ -6,21 +6,30 @@ class ImageInfo {
     const $imageInfo = document.createElement("div");
     $imageInfo.className = "ImageInfo";
     this.$imageInfo = $imageInfo;
+    this.$loading = document.createElement("div");
+    this.$loading.style.display = "none";
+    this.$loading.innerText = "Loading..";
+    this.$loading.classList.add("modal-loading");
+    $target.appendChild(this.$loading);
     $target.appendChild($imageInfo);
 
     this.data = data;
     this.render();
   }
-
+  isLoadding() {
+    this.$loading.style.display = "block";
+  }
   setState(nextData) {
     this.data = nextData;
     console.log(nextData);
-    
+
     this.render();
   }
 
   render() {
     if (this.data.visible) {
+      this.$loading.style.display = "none";
+
       const { name, url, temperament, origin } = this.data.image;
 
       this.$imageInfo.innerHTML = `
@@ -65,12 +74,11 @@ class ImageInfo {
     this.$imageInfo.classList.remove("modal-open");
   }
 
-
   /*
   이벤트 리무브가 안됨. 중첩해서 계속 생성됨.
   */
   bindCloseEvent() {
-    this.$imageInfo.querySelector(".close").addEventListener("click",  this);
+    this.$imageInfo.querySelector(".close").addEventListener("click", this);
     window.addEventListener("keydown", (e) => {
       if (e.keyCode == 27) {
         this.hide();

@@ -4,6 +4,7 @@ class App {
   $target = null;
   data = [];
 
+
   constructor($target) {
     this.$target = $target;
 
@@ -13,6 +14,7 @@ class App {
     this.searchInput = new SearchInput({
       $target,
       onSearch: keyword => {
+        this.searchResult.isLoadding();
         api.fetchCats(keyword).then(({ data }) => this.setState(data));
       }
     });
@@ -21,6 +23,7 @@ class App {
       $target,
       initialData: this.data,
       onClick: id =>{
+        this.imageInfo.isLoadding();
         api.fetchCatsModalData(id).then(({ data }) => this.imageInfo.setState({
           visible:true,
           image:data}));
