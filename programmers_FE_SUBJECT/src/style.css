@@ -24,7 +24,9 @@ body * {
   max-width: 1200px;
   column-gap: 1.5em;
 }
-
+.header{
+  display: flex;
+}
 .SearchResult {
   margin-top: 10px;
   display: grid;
@@ -46,11 +48,13 @@ body * {
 }
 
 .SearchInput {
-  width: 100%;
+  flex:5;
   font-size: 40px;
   padding: 10px 15px;
 }
-
+.random-fetch-btn{
+  flex:1;
+}
 .ImageInfo {
   position: fixed;
   left: 0;
