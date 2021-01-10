@@ -38,7 +38,6 @@ class ImageInfo {
         this.$imageInfo.classList.add("modal-open");
       }, 10);
       this.bindCloseEvent();
-
       this.scrollHidden();
     } else {
       //close할 때 scroll-hidden 제거
@@ -48,20 +47,37 @@ class ImageInfo {
   scrollHidden() {
     document.body.classList.add("scroll-hidden");
   }
-  hide(e) {
-    if (
-      e.target === this.$imageInfo ||
-      e.target === this.$imageInfo.querySelector(".close")
-    ) {
-      document.body.classList.remove("scroll-hidden");
-      setTimeout(() => {
-        this.$imageInfo.style.display = "none";
-      }, 1000);
-      this.$imageInfo.classList.remove("modal-open");
-      this.$imageInfo.removeEventListener("click", this.hide);
-    }
+
+  removeEvent() {
+    this.$imageInfo
+      .querySelector(".close")
+      .removeEventListener("click", this, false);
+    window.removeEventListener("keydown", this, false);
+    window.removeEventListener("click", this, false);
   }
+  hide() {
+    this.removeEvent();
+    document.body.classList.remove("scroll-hidden");
+    setTimeout(() => {
+      this.$imageInfo.style.display = "none";
+    }, 1000);
+    this.$imageInfo.classList.remove("modal-open");
+  }
+
   bindCloseEvent() {
-    this.$imageInfo.addEventListener("click", this.hide.bind(this));
+    this.$imageInfo.querySelector(".close").addEventListener("click", (e) => {
+      this.hide();
+    });
+    window.addEventListener("keydown", (e) => {
+      console.log("1");
+      if (e.keyCode == 27) {
+        this.hide();
+      }
+    });
+    window.addEventListener("click", (e) => {
+      if (e.target == this.$imageInfo) {
+        this.hide();
+      }
+    });
   }
 }
