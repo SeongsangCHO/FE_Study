@@ -20,11 +20,10 @@ class App {
     this.searchResult = new SearchResult({
       $target,
       initialData: this.data,
-      onClick: image => {
-        this.imageInfo.setState({
-          visible: true,
-          image
-        });
+      onClick: id =>{
+        api.fetchCatsModalData(id).then(({ data }) => this.imageInfo.setState({
+          visible:true,
+          image:data}));
       }
     });
 

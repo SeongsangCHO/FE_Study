@@ -3,7 +3,8 @@ class SearchResult {
   data = null;
   onClick = null;
 
-  constructor({ $target, initialData, onClick }) {
+  constructor({ $target, initialData, onClick, getCatsModalData }) {
+    this.getCatsModalData = getCatsModalData;
     this.$searchResult = document.createElement("section");
     this.$searchResult.className = "SearchResult";
     $target.appendChild(this.$searchResult);
@@ -22,7 +23,7 @@ class SearchResult {
   render() {
     this.$searchResult.innerHTML = this.data
       .map(
-        cat => `
+        (cat) => `
           <div class="item">
             <img src=${cat.url} alt=${cat.name} />
           </div>
@@ -32,7 +33,8 @@ class SearchResult {
 
     this.$searchResult.querySelectorAll(".item").forEach(($item, index) => {
       $item.addEventListener("click", () => {
-        this.onClick(this.data[index]);
+        this.onClick(this.data[index].id);
+        // this.onClick(this.data[index]);
       });
     });
   }

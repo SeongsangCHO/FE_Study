@@ -14,6 +14,8 @@ class ImageInfo {
 
   setState(nextData) {
     this.data = nextData;
+    console.log(nextData);
+    
     this.render();
   }
 
@@ -40,7 +42,6 @@ class ImageInfo {
       this.bindCloseEvent();
       this.scrollHidden();
     } else {
-      //close할 때 scroll-hidden 제거
       this.$imageInfo.style.display = "none";
     }
   }
@@ -51,9 +52,9 @@ class ImageInfo {
   removeEvent() {
     this.$imageInfo
       .querySelector(".close")
-      .removeEventListener("click", this, false);
-    window.removeEventListener("keydown", this, false);
-    window.removeEventListener("click", this, false);
+      .removeEventListener("click", this.hide);
+    window.removeEventListener("keydown", this);
+    window.removeEventListener("click", this);
   }
   hide() {
     this.removeEvent();
@@ -64,12 +65,13 @@ class ImageInfo {
     this.$imageInfo.classList.remove("modal-open");
   }
 
+
+  /*
+  이벤트 리무브가 안됨. 중첩해서 계속 생성됨.
+  */
   bindCloseEvent() {
-    this.$imageInfo.querySelector(".close").addEventListener("click", (e) => {
-      this.hide();
-    });
+    this.$imageInfo.querySelector(".close").addEventListener("click",  this);
     window.addEventListener("keydown", (e) => {
-      console.log("1");
       if (e.keyCode == 27) {
         this.hide();
       }
