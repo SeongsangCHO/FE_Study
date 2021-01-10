@@ -41,6 +41,6 @@ class App {
 
   setState(nextData) {
     this.data = nextData;
-    nextData.length > 0 ? this.searchResult.setState(nextData) : this.searchResult.noSearchData();
+    nextData?.length > 0 ? this.searchResult.setState(nextData) : this.searchResult.noSearchData();
   }
 }

@@ -61,7 +61,7 @@ class ImageInfo {
   removeEvent() {
     this.$imageInfo
       .querySelector(".close")
-      .removeEventListener("click", this.hide);
+      .removeEventListener("click", this);
     window.removeEventListener("keydown", this);
     window.removeEventListener("click", this);
   }
@@ -78,7 +78,7 @@ class ImageInfo {
   이벤트 리무브가 안됨. 중첩해서 계속 생성됨.
   */
   bindCloseEvent() {
-    this.$imageInfo.querySelector(".close").addEventListener("click", this);
+    this.$imageInfo.querySelector(".close").addEventListener("click", this.hide.bind(this));
     window.addEventListener("keydown", (e) => {
       if (e.keyCode == 27) {
         this.hide();
