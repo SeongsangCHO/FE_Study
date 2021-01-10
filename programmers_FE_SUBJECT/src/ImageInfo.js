@@ -35,8 +35,16 @@ class ImageInfo {
           </div>
         </div>`;
       this.$imageInfo.style.display = "block";
+      setTimeout(() =>  {
+        this.$imageInfo.classList.add("modal-open");
+      },10)
+      this.scrollHidden();
     } else {
+      //close할 때 scroll-hidden 제거
       this.$imageInfo.style.display = "none";
     }
+  }
+  scrollHidden() {
+    document.body.classList.add("scroll-hidden");
   }
 }

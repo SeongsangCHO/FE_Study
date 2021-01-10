@@ -58,6 +58,8 @@ body * {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: 1s;
 }
 
 .ImageInfo .title {
@@ -80,9 +82,19 @@ body * {
   border-radius: 5px;
 }
 
+.ImageInfo.modal-open {
+  opacity: 1;
+}
+
 .ImageInfo .content-wrapper img {
   width: 100%;
 }
+
+/* */
+body.modal-open{
+  overflow: hidden;
+}
+/* 다크모드 */
 
 @media (prefers-color-scheme: dark) {
   body {
@@ -94,6 +106,12 @@ body.dark-theme * {
   background-color:#000;
   color:white;
 }
+
+body.scroll-hidden{
+  overflow: hidden;
+}
+
+/* 화면 사이즈에 따른 갯수 반응형*/
 @media screen and (max-width: 992px) {
   .SearchResult {
     grid-template-columns: repeat(3, minmax(250px, 1fr));
@@ -102,6 +120,14 @@ body.dark-theme * {
 @media screen and (max-width: 768px) {
   .SearchResult {
     grid-template-columns: repeat(2, minmax(250px, 1fr));
+  }
+  .ImageInfo .content-wrapper {
+    left: 0%;
+    top: 50%;
+    transform: translate(0%, -50%);
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 5px;
   }
 }
 @media screen and (max-width: 572px) {
