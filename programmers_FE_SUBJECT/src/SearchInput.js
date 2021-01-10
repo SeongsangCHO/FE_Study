@@ -4,7 +4,7 @@ class SearchInput {
   historyData = [];
   timer;
   randomTimer;
-  constructor({ $target, onSearch, onRandomSearch}) {
+  constructor({ $target, onSearch, onRandomSearch }) {
     const $header = document.createElement("header");
     const $searchInput = document.createElement("input");
     const $randomButton = document.createElement("button");
@@ -13,8 +13,8 @@ class SearchInput {
     this.$historyList = $historyList;
     this.$searchInput = $searchInput;
     this.$randomButton = $randomButton;
-    this.$randomButton.classList.add("random-fetch-btn")
-    this.$randomButton.innerText ="랜덤 냐옹이 보기";
+    this.$randomButton.classList.add("random-fetch-btn");
+    this.$randomButton.innerText = "랜덤 냐옹이 보기";
     this.$searchInput.placeholder = "고양이를 검색해보세요.|";
 
     $searchInput.className = "SearchInput";
@@ -42,14 +42,14 @@ class SearchInput {
         }
       }, 200);
     });
-    $randomButton.addEventListener("click", e=>{
-      if (this.randomTimer){
+    $randomButton.addEventListener("click", (e) => {
+      if (this.randomTimer) {
         clearTimeout(this.randomTimer);
       }
-      this.randomTimer = setTimeout(() =>{
+      this.randomTimer = setTimeout(() => {
         onRandomSearch();
-      },200);
-    })
+      }, 200);
+    });
     console.log("SearchInput created.", this);
   }
   setState(keyword) {

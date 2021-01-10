@@ -12,7 +12,9 @@ class ImageInfo {
     this.$loading.classList.add("modal-loading");
     $target.appendChild(this.$loading);
     $target.appendChild($imageInfo);
-
+    this.hide = this.hide.bind(this);
+    this.hidePressEscKey = this.hide.bind(this);
+    this.hideOutSideClick = this.hide.bind(this);
     this.data = data;
     this.render();
   }
@@ -59,13 +61,13 @@ class ImageInfo {
   }
 
   removeEvent() {
-    this.$imageInfo
-      .querySelector(".close")
-      .removeEventListener("click", this);
-    window.removeEventListener("keydown", this);
-    window.removeEventListener("click", this);
+    this.$imageInfo.querySelector(".close").removeEventListener('click', this.hide)
+
+    window.removeEventListener("keydown", this.hide);
+    window.removeEventListener("click", this.hide);
   }
   hide() {
+    console.log('click');
     this.removeEvent();
     document.body.classList.remove("scroll-hidden");
     setTimeout(() => {
@@ -73,21 +75,23 @@ class ImageInfo {
     }, 1000);
     this.$imageInfo.classList.remove("modal-open");
   }
-
+  hidePressEscKey(){
+    console.log('click');
+    if (e.keyCode == 27) {
+      this.hide();
+    }
+  }
+  hideOutSideClick(){
+    if (e.target == this.$imageInfo) {
+      this.hide();
+    }
+  }
   /*
   이벤트 리무브가 안됨. 중첩해서 계속 생성됨.
   */
   bindCloseEvent() {
-    this.$imageInfo.querySelector(".close").addEventListener("click", this.hide.bind(this));
-    window.addEventListener("keydown", (e) => {
-      if (e.keyCode == 27) {
-        this.hide();
-      }
-    });
-    window.addEventListener("click", (e) => {
-      if (e.target == this.$imageInfo) {
-        this.hide();
-      }
-    });
+    this.$imageInfo.querySelector(".close").addEventListener("click", this.hide);
+    window.addEventListener("keydown", this.hidePressEscKey);
+    window.addEventListener("click", this.hideOutSideClick);
   }
 }
