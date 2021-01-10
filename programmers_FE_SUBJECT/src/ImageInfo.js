@@ -13,8 +13,8 @@ class ImageInfo {
     $target.appendChild(this.$loading);
     $target.appendChild($imageInfo);
     this.hide = this.hide.bind(this);
-    this.hidePressEscKey = this.hide.bind(this);
-    this.hideOutSideClick = this.hide.bind(this);
+    this.hidePressEscKey = this.hidePressEscKey.bind(this);
+    this.hideOutSideClick = this.hideOutSideClick.bind(this);
     this.data = data;
     this.render();
   }
@@ -75,13 +75,13 @@ class ImageInfo {
     }, 1000);
     this.$imageInfo.classList.remove("modal-open");
   }
-  hidePressEscKey(){
+  hidePressEscKey(e){
     console.log('click');
     if (e.keyCode == 27) {
       this.hide();
     }
   }
-  hideOutSideClick(){
+  hideOutSideClick(e){
     if (e.target == this.$imageInfo) {
       this.hide();
     }
