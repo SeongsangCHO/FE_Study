@@ -24,22 +24,44 @@ class SearchResult {
   noSearchData(){
     this.$searchResult.innerHTML = `<h1>No Search Data</h1>`
   }
+
   render() {
     this.$searchResult.innerHTML = this.data
       .map(
         (cat) => `
           <div class="item">
-            <img src=${cat.url} alt=${cat.name} />
+            <img class="lazy" data-src=${cat.url} data-alt=${cat.name} />
           </div>
         `
       )
       .join("");
+    this.lazyload();
 
     this.$searchResult.querySelectorAll(".item").forEach(($item, index) => {
       $item.addEventListener("click", () => {
         this.onClick(this.data[index].id);
-        // this.onClick(this.data[index]);
       });
     });
+  }
+  lazyload(){
+    const lazyImages = [].slice.call(this.$searchResult.querySelectorAll('.lazy'));
+    const options = {
+      threshold: 0.3
+    }
+    if('IntersectionObserver' in window){
+      const imageObserver = new IntersectionObserver((entries, observer) =>{
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            const image = entry.target;
+            image.src = image.dataset.src;
+            image.alt = image.dataset.alt;
+            image.classList.remove('data-src');
+            image.classList.remove('data-alt');
+            imageObserver.unobserve(image);
+          }
+        });
+      });
+      lazyImages.forEach(image => imageObserver.observe(image));
+    }
   }
 }
