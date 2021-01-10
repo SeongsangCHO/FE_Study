@@ -40,8 +40,7 @@ class App {
   }
 
   setState(nextData) {
-    console.log(this);
     this.data = nextData;
-    this.searchResult.setState(nextData);
+    nextData.length > 0 ? this.searchResult.setState(nextData) : this.searchResult.noSearchData();
   }
 }

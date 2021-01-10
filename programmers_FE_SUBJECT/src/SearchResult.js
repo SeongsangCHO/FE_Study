@@ -21,7 +21,9 @@ class SearchResult {
     this.data = nextData;
     this.render();
   }
-
+  noSearchData(){
+    this.$searchResult.innerHTML = `<h1>No Search Data</h1>`
+  }
   render() {
     this.$searchResult.innerHTML = this.data
       .map(
