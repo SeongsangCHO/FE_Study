@@ -24,7 +24,7 @@ body * {
   max-width: 1200px;
   column-gap: 1.5em;
 }
-.header{
+.header {
   display: flex;
 }
 .SearchResult {
@@ -48,29 +48,29 @@ body * {
 }
 
 .SearchInput {
-  flex:5;
+  flex: 5;
   font-size: 40px;
   padding: 10px 15px;
 }
-.random-fetch-btn{
-  flex:1;
+.random-fetch-btn {
+  flex: 1;
 }
 .ImageInfo {
   position: fixed;
   left: 0;
   top: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 0;
   transition: 1s opacity;
 }
-.modal-loading{
-  display:inline;
+.modal-loading {
+  display: inline;
   font-size: 50px;
   position: absolute;
-  left:50%;
-  top:50%;
+  left: 50%;
+  top: 50%;
   text-align: center;
   opacity: 0.5;
 }
@@ -86,12 +86,14 @@ body * {
 
 .ImageInfo .content-wrapper {
   position: absolute;
+
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff;
   border: 1px solid #eee;
   border-radius: 5px;
+  overflow: auto;
 }
 
 .ImageInfo.modal-open {
@@ -103,11 +105,10 @@ body * {
 }
 
 /* */
-body.modal-open{
-  overflow: hidden;
+body.modal-open {
+  /* overflow: hidden; */
 }
 /* 다크모드 */
-
 
 @media (prefers-color-scheme: dark) {
   body {
@@ -116,11 +117,11 @@ body.modal-open{
   }
 }
 body.dark-theme * {
-  background-color:#000;
-  color:white;
+  background-color: #000;
+  color: white;
 }
 
-body.scroll-hidden{
+body.scroll-hidden {
   overflow: hidden;
 }
 
@@ -137,6 +138,9 @@ body.scroll-hidden{
   .ImageInfo .content-wrapper {
     left: 0%;
     top: 50%;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
     transform: translate(0%, -50%);
     background-color: #fff;
     border: 1px solid #eee;
