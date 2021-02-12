@@ -41,3 +41,6 @@
 
 - form으로 todo 추가하는 부분
 - 디바운싱 적용
+
+
+![2](https://user-images.githubusercontent.com/55486644/107733331-1ef98100-6d3e-11eb-8d08-e47afdd735c9.gif)
