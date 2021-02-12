@@ -18,7 +18,6 @@ class Lazyload {
 
   observerHandler(entries, observer) {
     entries.forEach((entry) => {
-      console.log(this);
       
       if (entry.isIntersecting) {
         console.log("print");
@@ -28,9 +27,6 @@ class Lazyload {
         image.removeAttribute("data-src");
         observer.unobserve(entry.target);
       }
-    }, {
-      rootMargin: '1px 1px 1px 1px',
-      thresholds: [0.7],
     });
   }
   lazyLoadHandler() {
@@ -39,7 +35,8 @@ class Lazyload {
     );
 
     this.intersectionObserver = new IntersectionObserver(this.observerHandler.bind(this), this.options);
-
+    console.log(this.intersectionObserver);
+    
     this.lazyImages.forEach((item) => this.intersectionObserver.observe(item));
   }
   async imageAPI() {
