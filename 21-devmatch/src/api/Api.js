@@ -14,6 +14,7 @@ const request = async (url) => {
       throw new Error("ERROR");
     } else {
       //success
+      return result.json();
     }
   } catch (error) {
     console.error(error);

@@ -1,29 +1,21 @@
-const tag = 'Breadcrumb.js';
 export default class Breadcrumb {
-  //nextData
-  directoryHistory = [];
-  //destructure
-  constructor({$App, directoryHistory}) {
+  constructor({ $App, pathArrState }) {
     this.$App = $App;
+    this.pathArrState = pathArrState;
     this.init();
-    this.setState(directoryHistory);
+    this.render(this.pathArrState);
   }
-  init(){
-    this.$navBar = document.createElement('div');
-    this.$navBar.className = "Breadcrumb";
-    this.$App.appendChild(this.$navBar);
+  init() {
+    this.$nav = document.createElement("nav");
+    this.$nav.classList = "Breadcrumb";
+    this.$App.appendChild(this.$nav);
   }
-  //hitstory
-  setState(nextData){
-    if(this.directoryHistory != nextData){
-      this.directoryHistory = nextData;
-      this.render();
-    }
-  }
-  render(){
-    const historyList = this.directoryHistory.map((history) => {
-      return `<div>${history}</div>`
-    }).join("");
-    this.$navBar.innerHTML = historyList;
+  //경로에 있는 원소만큼 출력시켜야함.
+  render(pathArrState) {
+    this.$nav.innerHTML = pathArrState
+      .map((path) => {
+        return `<div>${path}</div>`;
+      })
+      .join("");
   }
 }
