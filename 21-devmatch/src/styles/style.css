@@ -72,7 +72,3 @@ body {
   top: 50%;
   transform: translate(-50%, -50%);
 }
-
-.content > img {
-  width:500px;
-}
