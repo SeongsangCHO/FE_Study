@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+
+  "name": "getToday",
+
+  "description": "Made by secho.",
+
+  "version": "1.0",
+
+  "content_scripts": [
+    {
+      "matches": ["http://git.innovationacademy.kr/*/wiki/_new"],
+
+      "js": ["contentScript.js"],
+
+      "run_at": "document_end"
+    }
+  ],
+  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
+  "permissions": ["http://git.innovationacademy.kr/*"]
+}
