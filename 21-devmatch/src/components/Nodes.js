@@ -19,7 +19,7 @@ export default class Nodes {
     const type = e.target.parentNode.dataset["type"];
     const dirName = e.target.parentNode.dataset["name"];
     const dirId = e.target.parentNode.dataset["id"];
-    let filePath = e.target.dataset["filePath"];
+    const filePath = e.target.dataset["filePath"];
     switch (type) {
       case "DIRECTORY": {
         this.browsingSubDir(dirName, dirId);
@@ -27,9 +27,7 @@ export default class Nodes {
         break;
       }
       case "FILE": {
-        console.log(filePath);
-        filePath = this.parseFilePath(filePath);
-        this.handlerImageFilePath(filePath);
+        this.handlerImageFilePath(this.parseFilePath(filePath));
         break;
       }
       case "PREV": {

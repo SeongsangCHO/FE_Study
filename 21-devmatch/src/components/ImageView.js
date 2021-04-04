@@ -6,19 +6,42 @@ export default class ImageView {
     this.$App = $App;
     this.init();
     this.render();
+    this.bindCloseEvent();
   }
   init() {
     this.$modalContainer = document.createElement("div");
     this.$modalContainer.classList = "Modal ImageViewer";
     this.$App.appendChild(this.$modalContainer);
   }
+
+  modalHide(){
+    this.$modalContainer.style.display ="none";
+  }
+  modalShow(){
+    this.$modalContainer.style.display ="block";
+  }
+  onCloseClick(e){
+    
+    if(e.target.classList.contains("Modal")){
+      this.modalHide();
+    }
+  }
+
+  onCloseEsc(e){
+    if (e.which === 27){
+      this.modalHide();
+    }
+  }
+  bindCloseEvent(){
+    this.$modalContainer.addEventListener('click', this.onCloseClick.bind(this));
+    window.addEventListener('keydown', this.onCloseEsc.bind(this));
+  }
+
   render() {
     const { imageFilePath } = this.getState();
-    //filePath == image/,,,.jpg
-    console.log(imageFilePath);
-    
+
     if (imageFilePath !== null) {
-      this.$modalContainer.style.display = "block";
+      this.modalShow();
       this.$modalContainer.innerHTML = `
     <div class="ImageViewer">
       <div class="content">
@@ -27,7 +50,7 @@ export default class ImageView {
     </div>
     `;
     } else {
-      this.$modalContainer.style.display = "none";
+      this.modalHide();
       return ;
     }
   }
