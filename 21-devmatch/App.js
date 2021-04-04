@@ -39,7 +39,12 @@ export default class App {
 
     this.Breadcrumb = new Breadcrumb({
       $App: this.$App,
-      getState: () => this.state
+      getState: () => this.state,
+      moveToClikedDir : (dirId) =>{
+        this.setPathState(this.state.pathIdList.slice(0, this.state.pathIdList.indexOf(dirId) + 1));
+        this.setCurrentPathState(this.state.pathIdList[this.state.pathIdList.length - 1]);
+        this.Nodes.render();
+      }
     });
 
     this.Nodes = new Nodes({
