@@ -28,12 +28,12 @@ export default class Nodes {
     this.directoryHandler();
     this.fileHandler();
     this.prevHandler();
-  }11
+  }
 
   directoryHandler(){}
   fileHandler(){}
   prevHandler(){}
-
+  
   bindNodeClickEvent() {
     this.$nodesContainer.addEventListener("click", this.onClickNode.bind(this));
   }
