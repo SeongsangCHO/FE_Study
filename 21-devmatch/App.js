@@ -51,8 +51,12 @@ export default class App {
       $App: this.$App,
       getState: () => this.state,
       browsingSubDir: async (dirName, dirId) => {
+        this.ImageView.modalShow().renderLoading();
+
         const response = await api.fetchContentById(dirId);
         this.setCurrentPathState(dirId);
+
+        this.ImageView.modalHide();
         this.setDataState({ [dirId]: { name: dirName, subDirData: response } });
         this.setPathState([...this.state.pathIdList, dirId]);
       },
@@ -64,7 +68,7 @@ export default class App {
         this.Nodes.render();
       },
       handlerImageFilePath : (filePath) => this.setImageFilePathState(filePath),
-      renderUsingCache : (dirId,dirName) =>{
+      renderUsingCache : (dirId) =>{
         this.setCurrentPathState(dirId);
         this.setPathState([...this.state.pathIdList, dirId]);
         this.Nodes.render();
@@ -98,7 +102,9 @@ export default class App {
   }
 
   initRootData() {
+    this.ImageView.modalShow().renderLoading();
     api.fetchContent().then((res) => {
+      this.ImageView.modalHide();
       this.setDataState({ root: { name: "root", subDirData: res } });
       this.setPathState(["root"]);
     });

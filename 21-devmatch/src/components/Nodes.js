@@ -34,7 +34,7 @@ export default class Nodes {
         if (!data.hasOwnProperty(dirId)) {
           this.browsingSubDir(dirName, dirId);
         } else{
-          this.renderUsingCache(dirId, dirName);
+          this.renderUsingCache(dirId);
         }
         break;
       }

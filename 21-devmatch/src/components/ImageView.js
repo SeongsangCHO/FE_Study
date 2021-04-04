@@ -16,9 +16,11 @@ export default class ImageView {
 
   modalHide(){
     this.$modalContainer.style.display ="none";
+    return this;
   }
   modalShow(){
     this.$modalContainer.style.display ="block";
+    return this;
   }
   onCloseClick(e){
     
@@ -35,6 +37,15 @@ export default class ImageView {
   bindCloseEvent(){
     this.$modalContainer.addEventListener('click', this.onCloseClick.bind(this));
     window.addEventListener('keydown', this.onCloseEsc.bind(this));
+  }
+
+  renderLoading(){
+    this.$modalContainer.innerHTML = `
+      <div class="Modal Loading">
+        <div class="content">
+          <img src="./assets/nyan-cat.gif">
+        </div>
+      </div>`;
   }
 
   render() {
