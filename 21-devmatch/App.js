@@ -23,7 +23,8 @@ export default class App {
       },
       pathIdList: [], // id를 통해 state.data객체의 name얻기 // 변경시 breadcrumb rerender
       //뒤로가기시 path에서 뽑고 상위 path값(id)으로 currentPath 변경, => 랜더수행
-      currentPathId: "root" // 뒤로가기, dir클릭해서 이동할 때, id값 변경되면 node rerender
+      currentPathId: "root", // 뒤로가기, dir클릭해서 이동할 때, id값 변경되면 node rerender
+      imageFilePath: null,
     };
 
     this.render(); // App 랜더링시점. 하위 컴포넌트들 랜더링.
@@ -31,10 +32,16 @@ export default class App {
   }
 
   render() {
+    this.ImageView = new ImageView({
+      $App: this.$App,
+      getState: () => this.state
+    });
+
     this.Breadcrumb = new Breadcrumb({
       $App: this.$App,
       getState: () => this.state
     });
+
     this.Nodes = new Nodes({
       $App: this.$App,
       getState: () => this.state,
@@ -44,18 +51,25 @@ export default class App {
         this.setDataState({ [dirId]: { name: dirName, subDirData: response } });
         this.setPathState([...this.state.pathIdList, dirId]);
       },
-      renderPrevDir: () => {
+      moveToPrevDir: () => {
         this.setPathState(this.popPathState()); //set, render까지,
         this.setCurrentPathState(
           this.state.pathIdList[this.state.pathIdList.length - 1]
         ); //마지막 원소를 현재 path로 설정
         this.Nodes.render();
       },
+      handlerImageFilePath : (filePath) => this.setImageFilePathState(filePath),
     });
-    this.ImageView = new ImageView({
-      $App: this.$App
-    });
+
   }
+
+  setImageFilePathState(filePath){
+    this.state = {...this.state, imageFilePath: filePath};
+    console.log(this.state);
+    
+    this.ImageView.render();
+  }
+
   setDataState(newState) {
     //{id : data( [{ }, { } ] )}
     this.state.data = { ...this.state.data, ...newState };

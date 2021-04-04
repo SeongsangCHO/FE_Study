@@ -1,6 +1,7 @@
 export default class Nodes {
-  constructor({ $App, getState, browsingSubDir, renderPrevDir }) {
-    this.renderPrevDir = renderPrevDir;
+  constructor({ $App, getState, browsingSubDir, moveToPrevDir, handlerImageFilePath }) {
+    this.handlerImageFilePath = handlerImageFilePath;
+    this.moveToPrevDir = moveToPrevDir;
     this.browsingSubDir = browsingSubDir;
     this.getState = getState;
     this.$App = $App;
@@ -8,12 +9,17 @@ export default class Nodes {
     this.render();
     this.bindNodeClickEvent();
   }
-
+  parseFilePath(filePath){
+    if(filePath[0] === "/"){
+      return filePath.slice(1);
+    }
+    return filePath;
+  }
   onClickNode(e) {
     const type = e.target.parentNode.dataset["type"];
     const dirName = e.target.parentNode.dataset["name"];
     const dirId = e.target.parentNode.dataset["id"];
-
+    let filePath = e.target.dataset["filePath"];
     switch (type) {
       case "DIRECTORY": {
         this.browsingSubDir(dirName, dirId);
@@ -21,11 +27,13 @@ export default class Nodes {
         break;
       }
       case "FILE": {
-        this.fileHandler();
+        console.log(filePath);
+        filePath = this.parseFilePath(filePath);
+        this.handlerImageFilePath(filePath);
         break;
       }
       case "PREV": {
-        this.renderPrevDir();
+        this.moveToPrevDir();
         break;
       }
       default:
@@ -61,7 +69,7 @@ export default class Nodes {
           .map((data) => {
             return `
       <div class="Node" data-id="${data.id}" data-name="${data.name}" data-type="${data.type}">
-        <img src="./assets/${data.type}.png">
+        <img data-file-path="${data.filePath}" src="./assets/${data.type}.png">
         <div>${data.name}</div>
       </div>
       `;
