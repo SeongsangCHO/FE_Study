@@ -64,33 +64,30 @@ export default class App {
         this.Nodes.render();
       },
       handlerImageFilePath : (filePath) => this.setImageFilePathState(filePath),
+      renderUsingCache : (dirId,dirName) =>{
+        this.setCurrentPathState(dirId);
+        this.setPathState([...this.state.pathIdList, dirId]);
+        this.Nodes.render();
+      }
     });
 
   }
 
   setImageFilePathState(filePath){
     this.state = {...this.state, imageFilePath: filePath};
-    console.log(this.state);
-    
     this.ImageView.render();
   }
 
   setDataState(newState) {
-    //{id : data( [{ }, { } ] )}
     this.state.data = { ...this.state.data, ...newState };
-    console.log("setDataState", newState.id, newState, this.state);
-
     this.Nodes.render();
   }
   setPathState(newPathId) {
     this.state.pathIdList = [...newPathId];
-    console.log(this.state.pathIdList);
-
     this.Breadcrumb.render();
   }
   setCurrentPathState(currentPathId) {
     this.state.currentPathId = currentPathId;
-    // this.Nodes.render();
   }
 
   popPathState() {

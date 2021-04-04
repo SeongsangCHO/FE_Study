@@ -1,5 +1,13 @@
 export default class Nodes {
-  constructor({ $App, getState, browsingSubDir, moveToPrevDir, handlerImageFilePath }) {
+  constructor({
+    $App,
+    getState,
+    browsingSubDir,
+    moveToPrevDir,
+    handlerImageFilePath,
+    renderUsingCache,
+  }) {
+    this.renderUsingCache = renderUsingCache;
     this.handlerImageFilePath = handlerImageFilePath;
     this.moveToPrevDir = moveToPrevDir;
     this.browsingSubDir = browsingSubDir;
@@ -9,21 +17,25 @@ export default class Nodes {
     this.render();
     this.bindNodeClickEvent();
   }
-  parseFilePath(filePath){
-    if(filePath[0] === "/"){
+  parseFilePath(filePath) {
+    if (filePath[0] === "/") {
       return filePath.slice(1);
     }
     return filePath;
   }
   onClickNode(e) {
+    const { data } = this.getState();
     const type = e.target.parentNode.dataset["type"];
     const dirName = e.target.parentNode.dataset["name"];
     const dirId = e.target.parentNode.dataset["id"];
     const filePath = e.target.dataset["filePath"];
     switch (type) {
       case "DIRECTORY": {
-        this.browsingSubDir(dirName, dirId);
-
+        if (!data.hasOwnProperty(dirId)) {
+          this.browsingSubDir(dirName, dirId);
+        } else{
+          this.renderUsingCache(dirId, dirName);
+        }
         break;
       }
       case "FILE": {
