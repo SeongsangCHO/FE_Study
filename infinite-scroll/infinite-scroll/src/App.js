@@ -18,27 +18,12 @@ function App() {
     threshold: 1.0,
   };
   const getNextData = async () => {
-    const dataContainer = [];
+    const promiseContainer = [];
     try {
       for (let i = id; i <= id + 5; i++) {
-        console.log("for", i);
-
-        const getFiveData = async (i) => {
-          console.log("getFiveData", i);
-
-          const nextData = await fetchData(i);
-          if (nextData !== undefined) {
-            console.log("container push", i, nextData);
-
-            dataContainer.push(nextData);
-          }
-        };
-        getFiveData(i);
+        promiseContainer.push(fetchData(i));
       }
-      console.log("before setData");
-
-      setData([...data, ...dataContainer]);
-      console.log("afterSetData", data);
+      Promise.all(promiseContainer).then((value) => setData([...data, ...value]));
     } catch {
       console.log("NOT FOUND");
     }
