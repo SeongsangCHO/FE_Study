@@ -8,17 +8,17 @@ const API_KEY = `4c21dda5cc0e6817211c9d7d38ed5d1d`;
 
 function App() {
   const interSectRef = useRef(null);
-  const [id, setId] = useState(2);
+  const [page, setPage] = useState(2);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoding] = useState(false);
   useEffect(async () => {
-    await fetchData(id);
-  }, [id]);
+    await fetchData(page);
+  }, [page]);
   const handleObserver = useCallback(async (entries) => {
     const target = entries[0];
     if (target.isIntersecting) {
       console.log("is InterSecting");
-      setId((prev) => prev + 1);
+      setPage((prev) => prev + 1);
     }
   }, []);
   useEffect(() => {
@@ -32,18 +32,18 @@ function App() {
     threshold: 1.0,
   };
   const fetchData = useCallback(
-    async (page) => {
+    async (nextPage) => {
       setIsLoding(true);
       try {
         const res = await axios.get(
-          `${API_ENDPOINT}/${page}?api_key=${API_KEY}`
+          `${API_ENDPOINT}/${nextPage}?api_key=${API_KEY}`
         );
         setData([...data].concat({ ...res.data }));
         setIsLoding(false);
         return res.data;
       } catch {
         console.log("ERROR");
-        setId((prev) => prev + 1);
+        setPage((prev) => prev + 1);
       }
     },
     [data]
